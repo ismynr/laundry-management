@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -18,7 +19,7 @@ class UserSeeder extends Seeder
             $user = new App\User;
             $user->name = $faker->name;
             $user->email = $faker->unique()->email;
-            $user->password = $user->email;
+            $user->password = Hash::make($user->email);
             $user->role = 'karyawan';
 
             if($i == 0){
