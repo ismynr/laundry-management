@@ -20,3 +20,23 @@ Route::get('/', function () {
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * 
+ * Middleware Auth Admin
+ */
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function (){
+    Route::get('/', 'AdminController@index')->name('dashboard');
+
+
+});
+
+/**
+ * 
+ * Middleware Auth Karyawan
+ */
+Route::middleware(['auth', 'karyawan', 'verified'])->prefix('karyawan')->name('karyawan.')->group(function (){
+    Route::get('/', 'KaryawanController@index')->name('dashboard');
+
+    
+});
