@@ -18,10 +18,9 @@ mix.styles([
     // dashboard
     'public/assets/vendors/css/vendor.bundle.base.css',
     'public/assets/css/style.css',
-    'public/assets/images/favicon.png',
 
     // pages
-    
+    'public/datatables/dataTables.bootstrap4.min.css',
 ], 'public/css/all.css');
 
 mix.scripts([
@@ -33,7 +32,9 @@ mix.scripts([
     'public/assets/js/misc.js',
     'public/assets/js/dashboard.js',
     'public/assets/js/todolist.js',
+    'public/datatables/jquery.min.js',
 
     // pages
-
+    'public/datatables/jquery.dataTables.min.js',
+    'public/datatables/dataTables.bootstrap4.min.js',
 ], 'public/js/all.js');

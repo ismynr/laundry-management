@@ -34,6 +34,10 @@
       </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/all.js') }}" defer></script>
+    
+    <script src="{{ asset('js/all.js') }}"></script>
+
+    @stack('scripts')
+    
   </body>
 </html>
