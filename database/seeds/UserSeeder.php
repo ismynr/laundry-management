@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             $user->name = $faker->name;
             $user->email = $faker->unique()->email;
             $user->password = Hash::make($user->email);
+            $user->api_token = Str::random(60);
             $user->role = 'karyawan';
 
             if($i == 0){
