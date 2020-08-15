@@ -15,6 +15,9 @@ class PackageController extends Controller
             $data = Package::latest()->get();
             return Datatables::of($data)
                     ->addIndexColumn()
+                    ->editColumn('service', function ($data){
+                        return $data->service->service_type;
+                    })
                     ->addColumn('action', function($row){
                            $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
                             return $btn;

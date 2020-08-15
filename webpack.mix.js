@@ -15,26 +15,23 @@ const mix = require('laravel-mix');
 //     .sass('resources/sass/app.scss', 'public/css');
 
 mix.styles([
-    // dashboard
+    // 'public/bootstrap/bootstrap.min.css',
     'public/assets/vendors/css/vendor.bundle.base.css',
     'public/assets/css/style.css',
-
-    // pages
-    'public/datatables/dataTables.bootstrap4.min.css',
+    'public/assets/datatables/dataTables.bootstrap4.min.css',
 ], 'public/css/all.css');
 
 mix.scripts([
-    // dashboard
+    'public/assets/datatables/jquery.min.js',
     'public/assets/vendors/js/vendor.bundle.base.js',
+    // 'public/bootstrap/bootstrap.min.js',
     'public/assets/vendors/chart.js/Chart.min.js',
     'public/assets/js/off-canvas.js',
     'public/assets/js/hoverable-collapse.js',
     'public/assets/js/misc.js',
     'public/assets/js/dashboard.js',
     'public/assets/js/todolist.js',
-    'public/datatables/jquery.min.js',
-
-    // pages
-    'public/datatables/jquery.dataTables.min.js',
-    'public/datatables/dataTables.bootstrap4.min.js',
+    'public/assets/js/sweetalert.js',
+    'public/assets/datatables/jquery.dataTables.min.js',
+    'public/assets/datatables/dataTables.bootstrap4.min.js',
 ], 'public/js/all.js');

@@ -28,8 +28,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function (){
     Route::get('/', 'AdminController@index')->name('dashboard');
 
-    Route::resource('packages', 'Admin\PackageController');
-    Route::resource('services', 'Admin\ServiceController');
+    Route::resource('packages', 'admin\PackageController');
+    Route::resource('services', 'admin\ServiceController');
 });
 
 /**

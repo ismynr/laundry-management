@@ -20,8 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:api', 'admin'])->prefix('admin')->name('admin.')->group(function () {
 
-    Route::get('/user', function(Request $request) {
-        return $request->user();
-    });
+    // Route::get('/user', function(Request $request) {
+    //     return $request->user();
+    // });
+
+    Route::resource('packages', 'API\PackageApiController');
+    Route::resource('services', 'API\ServiceApiController');
     
 });
+

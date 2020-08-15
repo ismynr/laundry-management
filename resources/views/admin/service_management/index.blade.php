@@ -21,13 +21,15 @@
     <div class="col-lg-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">List Jasa Paket</h4>
-          </p>
-          <table class="table table-striped">
+          <h4 class="card-title">List Jasa Paket </h4>
+          <button type="button" class="addBtn btn btn-gradient-primary btn-sm float-right"><i class="mdi mdi-plus menu-icon"></i> Create</button>
+          
+          <table class="table table-striped data-table">
             <thead>
               <tr>
-                <th> Tipe Service </th>
-                <th> Action </th>
+                <th> # </th>
+                <th> Tipe Jasa </th>
+                <th width="30%"> Action </th>
               </tr>
             </thead>
             <tbody> </tbody>
@@ -36,5 +38,26 @@
       </div>
     </div>
   </div>
-  
 @endsection
+
+@section('modals')
+  @include('admin.service_management.modals.add-modal')
+  @include('admin.service_management.modals.edit-modal')
+@endsection
+
+@push('script')
+  <script>
+    $(function () {
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        },
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer {{ Auth::user()->api_token }}');
+        }
+      });
+    });
+  </script>
+  
+  @include('admin.service_management.JS')
+@endpush

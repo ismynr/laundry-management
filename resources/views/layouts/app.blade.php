@@ -34,10 +34,11 @@
       </div>
 
     <!-- Scripts -->
-    
     <script src="{{ asset('js/all.js') }}"></script>
 
-    @stack('scripts')
+    @yield('modals')
+
+    @stack('script')
     
   </body>
 </html>

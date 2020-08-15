@@ -177,6 +177,7 @@ return [
 
         // CUSTOM 
         Yajra\DataTables\DataTablesServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
     ],
 
     /*
