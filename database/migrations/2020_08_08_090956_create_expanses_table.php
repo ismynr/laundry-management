@@ -18,7 +18,7 @@ class CreateExpansesTable extends Migration
             $table->unsignedBigInteger('id_user');
             $table->text('deskripsi');
             $table->integer('harga');
-            $table->string('catatan');
+            $table->string('catatan')->nullable();
             $table->timestamps();
         });
 

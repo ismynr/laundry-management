@@ -8,6 +8,8 @@ use App\Repositories\ServiceRepository;
 use App\Interfaces\ServiceRepositoryInterface;
 use App\Repositories\PackageRepository;
 use App\Interfaces\PackageRepositoryInterface;
+use App\Repositories\ExpanseRepository;
+use App\Interfaces\ExpanseRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -26,6 +28,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             PackageRepositoryInterface::class, 
             PackageRepository::class
+        );
+
+        $this->app->bind(
+            ExpanseRepositoryInterface::class, 
+            ExpanseRepository::class
         );
     }
 
