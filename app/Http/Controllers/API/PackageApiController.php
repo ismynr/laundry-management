@@ -42,7 +42,7 @@ class PackageApiController extends Controller
     {
         $object = $this->service->getById($id);
         if(!$object){
-            return $this->response("Package not found with ID $id", 404);
+            return $this->response("Package not found with ID $id", null, 404);
         }
 
         return $this->response(
@@ -59,12 +59,12 @@ class PackageApiController extends Controller
     {
         $check = $this->service->getById($id);
         if(!$check){
-            return $this->response("Package not found with ID $id", 404);
+            return $this->response("Package not found with ID $id", null, 404);
         }
 
         $object = $this->service->update($request, $id);
-        return $this->success(
-            "Package has been Updated", $request->all(), 200
+        return $this->response(
+            "Package has been Updated", $request->all()
         );
     }
 
@@ -72,11 +72,11 @@ class PackageApiController extends Controller
     {
         $check = $this->service->getById($id);            
         if(!$check){
-            return $this->response("Package not found with ID $id", 404);
+            return $this->response("Package not found with ID $id", null, 404);
         }
 
         $object = $this->service->delete($id);
-        return $this->success(
+        return $this->response(
             "Package has been Deleted", $check
         );
     }
