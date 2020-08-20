@@ -21,6 +21,10 @@ class CreateExpansesTable extends Migration
             $table->string('catatan');
             $table->timestamps();
         });
+
+        Schema::table('expanses', function($table) {
+            $table->foreign('id_user')->references('id')->on('users');
+        });
     }
 
     /**

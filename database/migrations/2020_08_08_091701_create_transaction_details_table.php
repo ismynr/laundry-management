@@ -22,6 +22,11 @@ class CreateTransactionDetailsTable extends Migration
             $table->string('status');
             $table->timestamps();
         });
+
+        Schema::table('transaction_details', function($table) {
+            $table->foreign('id_transaction')->references('id')->on('transactions');
+            $table->foreign('id_package')->references('id')->on('packages');
+        });
     }
 
     /**

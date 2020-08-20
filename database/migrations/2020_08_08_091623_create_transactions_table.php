@@ -23,6 +23,11 @@ class CreateTransactionsTable extends Migration
             $table->dateTime('end_date');
             $table->timestamps();
         });
+
+        Schema::table('transactions', function($table) {
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_customer')->references('id')->on('customers');
+        });
     }
 
     /**

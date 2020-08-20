@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 
 use App\Repositories\ServiceRepository;
 use App\Interfaces\ServiceRepositoryInterface;
+use App\Repositories\PackageRepository;
+use App\Interfaces\PackageRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             ServiceRepositoryInterface::class, 
             ServiceRepository::class
+        );
+
+        $this->app->bind(
+            PackageRepositoryInterface::class, 
+            PackageRepository::class
         );
     }
 

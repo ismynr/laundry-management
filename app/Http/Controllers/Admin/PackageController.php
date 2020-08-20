@@ -4,25 +4,33 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use App\Services\PackageService;
 use App\Package;
 use DataTables;
 
 class PackageController extends Controller
 {
+    protected $service;
+
+	public function __construct(PackageService $service)
+	{
+		$this->service = $service;
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Package::latest()->get();
+            $data = $this->service->getAllLatest();
+            
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->editColumn('service', function ($data){
-                        return $data->service->service_type;
+                        return $data->service->service_type ?? "-";
                     })
-                    ->addColumn('action', function($row){
-                           $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
-                            return $btn;
+                    ->editColumn('action', function ($data){
+                        return $data->id;
                     })
-                    ->rawColumns(['action'])
                     ->make(true);
         }
 

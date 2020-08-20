@@ -22,6 +22,11 @@ class CreatePackagesTable extends Migration
             $table->integer('harga');
             $table->timestamps();
         });
+
+        Schema::table('packages', function($table) {
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_service')->references('id')->on('services');
+        });
     }
 
     /**

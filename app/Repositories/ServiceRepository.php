@@ -40,4 +40,10 @@ class ServiceRepository implements ServiceRepositoryInterface
     {
         return Service::destroy($id);
     }
+
+    public function searchServiceReq($data){
+        return Service::whereRaw("(service_type LIKE '%".$data."%')")
+                ->limit(30)
+                ->get();
+    }
 }

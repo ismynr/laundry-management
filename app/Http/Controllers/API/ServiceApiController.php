@@ -23,12 +23,8 @@ class ServiceApiController extends Controller
     
     public function index()
     {
-        try {
-            $object = $this->service->getAllLatest();
-            return $this->success("All Services", $object);
-        } catch(Exception $e) {
-            return $this->error($e->getMessage(), $e->getCode());
-        }
+        $object = $this->service->getAllLatest();
+        return $this->response("All Services", $object);
     }
 
     public function create()
@@ -38,32 +34,22 @@ class ServiceApiController extends Controller
 
     public function store(ServiceRequest $request)
     {
-        try {
-            $object = $this->service->insert($request->all());
-
-            return $this->success(
-                "Service Inserted", $object, 201 
-            );
-        } catch(Exception $e) {
-            return $this->error($e->getMessage(), $e->getCode());
-        }
+        $object = $this->service->insert($request->all());
+        return $this->response(
+            "Service Inserted", $object, 201 
+        );
     }
 
     public function show($id)
     {
-        try {
-            $object = $this->service->getById($id);
-
-            if(!$object){
-                return $this->error("No service with ID $id", 404);
-            }
-
-            return $this->success(
-                "Service Detail", $object 
-            );
-        } catch(Exception $e) {
-            return $this->error($e->getMessage(), $e->getCode());
+        $object = $this->service->getById($id);
+        if(!$object){
+            return $this->response("No service with ID $id", null, 404);
         }
+
+        return $this->response(
+            "Service Detail", $object 
+        );
     }
 
     public function edit($id)
@@ -73,35 +59,30 @@ class ServiceApiController extends Controller
 
     public function update(ServiceRequest $request, $id)
     {
-        try {
-            $check = $this->service->getById($id);
-
-            if(!$check){
-                return $this->error("No service with ID $id", 404);
-            }
-
-            $object = $this->service->update($request->all(), $id);
-
-            return $this->success(
-                "Service Updated", $check, 200
-            );
-        } catch(Exception $e) {
-            return $this->error($e->getMessage(), $e->getCode());
+        $check = $this->service->getById($id);
+        if(!$check){
+            return $this->response("No service with ID $id", null, 404);
         }
+
+        $object = $this->service->update($request->all(), $id);
+        return $this->response(
+            "Service Updated", $check, 200
+        );
     }
 
     public function destroy($id)
     {
-        try {
-            $object = $this->service->delete($id);
-            
-            if(!$object){
-                return $this->error("No service with ID $id", 404);
-            }
-
-            return $this->success("Service Deleted", $object);
-        } catch(Exception $e) {
-            return $this->error($e->getMessage(), $e->getCode());
+        $object = $this->service->delete($id);
+        if(!$object){
+            return $this->response("No service with ID $id", null, 404);        
         }
+
+        return $this->response("Service Deleted", $object);
+    }
+
+    public function loadDataSearchReq(Request $request)
+    {
+        $data = $this->service->loadSearchServiceReq($request->q);
+        return $this->response("Show service By " . $request->q, $data);
     }
 }

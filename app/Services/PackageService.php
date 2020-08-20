@@ -1,15 +1,17 @@
 <?php 
 namespace App\Services;
 
-use App\Interfaces\ServiceRepositoryInterface;
-use Illuminate\Http\Request;
-use App\Service;
+use App\Interfaces\PackageRepositoryInterface;
+use App\Http\Requests\PackageRequest;
 
-class ServiceService
+use App\Package;
+use Auth;
+
+class PackageService
 {
     protected $repo;
 
-    public function __construct(ServiceRepositoryInterface $repo)
+    public function __construct(PackageRepositoryInterface $repo)
     {
         $this->repo = $repo;
     }
@@ -34,25 +36,19 @@ class ServiceService
         return $this->repo->getById($id);
     }
 
-    public function insert(array $data)
+    public function insert(PackageRequest $request)
     {
-        return $this->repo->store($data);
+        return $this->repo->store($request->all());
     }
 
-    public function update(array $data, $id)
+    public function update(PackageRequest $request, $id)
     {
-        return $this->repo->update($data, $id);
+        return $this->repo->update($request->all(), $id);
     }
 
     public function delete($id)
     {
         return $this->repo->destroy($id);
-    }
-
-    // SELECT2 AUTOCOMPLETE SERVICE
-    public function loadSearchServiceReq($data)
-    {
-        return $this->repo->searchServiceReq($data);
     }
 }
 

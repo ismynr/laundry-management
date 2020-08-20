@@ -1,20 +1,24 @@
 <script>
-    $(function() {
-        
+    $(function () {
+
         // DATATABLES CONFIG
         let table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('admin.services.index') }}",
+            ajax: "{{ route('admin.packages.index') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'service_type', name: 'service_type'},
+                {data: 'nama_paket', name: 'nama_paket'},
+                {data: 'tipe_berat', name: 'tipe_berat'},
+                {data: 'harga', name: 'harga'},
+                {data: 'service', name: 'service'},
                 {data: 'action', name: 'action', orderable: false, searchable: false,
-                render: function( data, _type, _full ) {
-                            let btn;
-                            btn = '<button type="button" data-id="/api/admin/services/' + data + '" class="editBtn btn btn-gradient-info btn-sm mr-1"><i class="mdi mdi-pencil menu-icon"></i> Edit</button>';
-                            btn += '<button data-id="/api/admin/services/' + data + '" class="deleteBtn btn btn-gradient-danger btn-sm"><i class="mdi mdi-delete menu-icon"></i> Delete</button>';
-                            return btn;
+                    render: function( data, _type, _full ) {
+                        let btn;
+                        btn = '<button type="button" data-id="/api/admin/packages/' + data + '" class="viewBtn btn btn-gradient-success btn-sm mr-1"><i class="mdi mdi-eye menu-icon"></i></button>';
+                        btn += '<button type="button" data-id="/api/admin/packages/' + data + '" class="editBtn btn btn-gradient-info btn-sm mr-1"><i class="mdi mdi-pencil menu-icon"></i> Edit</button>';
+                        btn += '<button data-id="/api/admin/packages/' + data + '" class="deleteBtn btn btn-gradient-danger btn-sm"><i class="mdi mdi-delete menu-icon"></i> Delete</button>';
+                        return btn;
                 }},
             ]
         });
@@ -23,10 +27,16 @@
         let Vdef = {
             'column' : { 
                 'store' : {
-                'service_type' : $('.error_service_type'),
+                    'nama_paket' : $('.error_nama_paket'), 
+                    'tipe_berat' : $('.error_tipe_berat'), 
+                    'harga'      : $('.error_harga'), 
+                    'id_service' : $('.error_id_service'),
                 },
                 'update' : {
-                'service_type' : $('.edit_error_service_type'),
+                    'nama_paket' : $('.edit_error_nama_paket'), 
+                    'tipe_berat' : $('.edit_error_tipe_berat'), 
+                    'harga'      : $('.edit_error_harga'), 
+                    'id_service' : $('.edit_error_id_service'),
                 }
             },
             'form' : {
@@ -35,9 +45,11 @@
             },
             'colEdit' : {
                 'id'         : $('#edit_id'),
-                'service_type' : $('#edit_service_type'),
+                'nama_paket' : $('#edit_nama_paket'),
+                'tipe_berat' : $('#edit_tipe_berat'),
+                'harga'      : $('#edit_harga'),
             },
-            'url' : "/api/admin/services/"
+            'url' : "/api/admin/packages/"
         };
 
         // ADD BUTTON TO SHOW MODAL DIALOG
@@ -53,7 +65,8 @@
             e.preventDefault();
             let formdata = new FormData(Vdef.form.store[0]);
             showHideComp('hide', '', Vdef.column.store);
-            $(this).html('Sending..');        
+            $(this).html('Sending..');
+        
             $.ajax({
                 // data: form.store.serialize(),
                 data : formdata,
@@ -68,11 +81,11 @@
                     Vdef.form.store.trigger("reset");
                     Toast.fire({icon: 'success', title: 'Data Added Successfully'})
                 },
-
                 error: function (data) {
                     if(data.status == 422){
                         let msg = data.responseJSON.errors;
                         let msgObject = Object.keys(msg);      
+
                         // MESSAGE ERROR VALIDATION
                         msgObject.forEach((e, i) => {
                             if (msg[msgObject[i]]) {
@@ -92,11 +105,13 @@
         });
 
         // EDIT BUTTON TO SHOW MODAL DIALOG
-        $('.table').on('click','.editBtn[data-id]',function(e){
+        $('#table').on('click','.editBtn[data-id]',function(e){
             e.preventDefault();
             Vdef.form.update.trigger("reset");
             showHideComp('hide', '', Vdef.column.update);
-            let url = $(this).data('id');            
+            let url = $(this).data('id');
+            let col5 = $(this).closest("tr").find("td:nth-child(5)"); //CHANGE THIS SELECT2
+            
             $.ajax({
                 url      : url,
                 type     : 'GET',
@@ -105,15 +120,23 @@
                     let results = data.results;
                     let resObject = Object.keys(results);
                     let colEditObject = Object.keys(Vdef.colEdit);
+
+                    //CHANGE THIS SELECT2
+                    $.each(col5, function() {
+                        $("#edit_id_service").select2("trigger", "select", {
+                            data: { id: results.id_service, text:$(this).text() }
+                        });
+                    });
+
                     // MATCHING COLUMN DATA FOR FORM
                     colEditObject.forEach((e, i) => {
-                        // SEARCH
                         resObject.forEach((eResult, iResult) => {
                             if(e == eResult){
                                 Vdef.colEdit[e].val(results[eResult]);
                             }
                         });
                     });
+
                     $('#editModal').modal('show');
                 }
             });
@@ -126,6 +149,7 @@
             formdata.append('_method', 'PUT');
             showHideComp('hide', '', Vdef.column.update);
             $(this).html('Sending..');
+
             $.ajax({
                 url        : Vdef.url + $('#edit_id').val(),
                 data       : formdata,
@@ -142,7 +166,8 @@
                 error: function (data) {
                     if(data.status == 422){
                         let msg = data.responseJSON.errors;
-                        let msgObject = Object.keys(msg);                        
+                        let msgObject = Object.keys(msg);
+                        
                         // MESSAGE ERROR VALIDATION
                         msgObject.forEach((e, i) => {
                             if (msg[msgObject[i]]) {
@@ -164,7 +189,8 @@
         // DELETE OR DESTROY DATA SWEET ALERT
         $('.table').on('click','.deleteBtn[data-id]',function(e){
             e.preventDefault();
-            var url = $(this).data('id');            
+            var url = $(this).data('id');
+            
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -176,7 +202,7 @@
             })
             .then((result) => {
                 if (result.value) {
-                $.ajax({
+                    $.ajax({
                         url : url,
                         type: 'DELETE',
                         dataType : 'json',
@@ -196,6 +222,34 @@
             })
         });
 
+        // COMBOBOX AUTO COMPLETE ID SERVICE
+        $('.select2_id_service').select2({
+            theme: "bootstrap",
+            placeholder: 'Pilih Service',
+            ajax: {
+                url: "/api/admin/services/search/select",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return { q: params.term }
+                },
+                processResults: function (data) {
+                    return {
+                        results:  $.map(data.results, function (item) {
+                            return {
+                                text: item.service_type+' - (id: '+item.id+')',
+                                id: item.id
+                            }
+                        })
+                    };
+                }, cache: true
+            },
+            templateSelection: function (selection) {
+                var result = selection.text.split('-');
+                return result[0];
+            }
+        });
+
         // SHOW HIDE AND SET TEXT IN COMPONENT
         function showHideComp(key, text = "", ...component){
             let comp = component[0];
@@ -213,7 +267,7 @@
                 }
                 comp[object[i]].text(text);
             }
-        };     
+        };
         
         // TOAST SWEET ALERT CONFIG
         const Toast = Swal.mixin({

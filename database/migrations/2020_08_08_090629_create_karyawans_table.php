@@ -21,6 +21,10 @@ class CreateKaryawansTable extends Migration
             $table->string('gender', 10);
             $table->timestamps();
         });
+
+        Schema::table('karyawans', function($table) {
+            $table->foreign('id_user')->references('id')->on('users');
+        });
     }
 
     /**

@@ -10,7 +10,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
+    <link href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}" rel="stylesheet">
   </head>
   <body>
     <div class="container-scroller">

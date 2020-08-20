@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-interface ServiceRepositoryInterface
+interface PackageRepositoryInterface
 {
     public function getAllLatest();
 
@@ -17,6 +17,4 @@ interface ServiceRepositoryInterface
     public function update(array $data, $id);
 
     public function destroy($id);
-
-    public function searchServiceReq($data);
 }
