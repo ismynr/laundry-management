@@ -13,12 +13,10 @@ class PackageSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
-        $idUserSuffle = App\User::all()->pluck('id')->toArray();
         $idServiceSuffle = App\Service::all()->pluck('id')->toArray();
 
         for ($i=0; $i < 25; $i++) { 
             $packages = new App\Package;
-            $packages->id_user    = $faker->randomElement($idUserSuffle);
             $packages->id_service = $faker->randomElement($idServiceSuffle);
             $packages->nama_paket = $faker->text(80);
             $packages->tipe_berat = $faker->randomElement(['kg', 'ons']);

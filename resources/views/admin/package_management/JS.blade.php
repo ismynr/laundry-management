@@ -15,8 +15,8 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false,
                     render: function( data, _type, _full ) {
                         let btn;
-                        btn = '<button type="button" data-id="/api/admin/packages/' + data + '" class="viewBtn btn btn-gradient-success btn-sm mr-1"><i class="mdi mdi-eye menu-icon"></i></button>';
-                        btn += '<button type="button" data-id="/api/admin/packages/' + data + '" class="editBtn btn btn-gradient-info btn-sm mr-1"><i class="mdi mdi-pencil menu-icon"></i> Edit</button>';
+                        // btn = '<button type="button" data-id="/api/admin/packages/' + data + '" class="viewBtn btn btn-gradient-success btn-sm mr-1"><i class="mdi mdi-eye menu-icon"></i></button>';
+                        btn = '<button type="button" data-id="/api/admin/packages/' + data + '" class="editBtn btn btn-gradient-info btn-sm mr-1"><i class="mdi mdi-pencil menu-icon"></i> Edit</button>';
                         btn += '<button data-id="/api/admin/packages/' + data + '" class="deleteBtn btn btn-gradient-danger btn-sm"><i class="mdi mdi-delete menu-icon"></i> Delete</button>';
                         return btn;
                 }},

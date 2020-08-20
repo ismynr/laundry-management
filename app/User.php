@@ -45,10 +45,6 @@ class User extends Authenticatable
         return $this->hasOne('App\Karyawan');
     }
 
-    public function package(){
-        return $this->hasMany('App\Package');
-    }
-
     public function transaction(){
         return $this->hasMany('App\Transaction');
     }

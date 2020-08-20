@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\ServiceRequest;
 use App\Services\ServiceService;
-use App\Service;
 use DataTables;
 
 class ServiceController extends Controller

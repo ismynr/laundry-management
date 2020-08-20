@@ -15,7 +15,6 @@ class CreatePackagesTable extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_service');
             $table->string('nama_paket');
             $table->string('tipe_berat', 3);
@@ -24,7 +23,6 @@ class CreatePackagesTable extends Migration
         });
 
         Schema::table('packages', function($table) {
-            $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_service')->references('id')->on('services');
         });
     }
