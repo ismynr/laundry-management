@@ -6,6 +6,8 @@ interface ExpanseRepositoryInterface
 {
     public function getAllLatest();
 
+    public function getAllLatestOwner($idUser);
+
     public function getAll();
 
     public function getBy($column, $data);

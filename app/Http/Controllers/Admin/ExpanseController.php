@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Services\ExpanseService;
 use DataTables;
+use Auth;
 
 class ExpanseController extends Controller
 {
@@ -26,11 +27,22 @@ class ExpanseController extends Controller
                     ->editColumn('user', function($data){
                         return $data->user->name;
                     })
-                    ->editColumn('harga', function($data){;
+                    ->editColumn('harga', function($data){
                         return number_format($data->harga,0,'','.');
                     })
-                    ->editColumn('catatan', function($data){;
-                        return $data->catatan ?? '-';
+                    ->editColumn('deskripsi', function($data){
+                        $desk = $data->deskripsi;
+                        if(strlen($desk) > 80){
+                            return $desk ? substr($desk, 0, 80).'...':'-';
+                        }
+                        return $data->deskripsi ?? '-';
+                    })
+                    ->editColumn('catatan', function($data){
+                        $cat = $data->catatan;
+                        if(strlen($cat) > 10){
+                            return $cat ? substr($cat, 0, 10).'...':'-';
+                        }
+                        return $cat ?? '-';
                     })
                     ->editColumn('action', function($data) {
                         return $data->id;
@@ -38,6 +50,25 @@ class ExpanseController extends Controller
                     ->make(true);
         }
         return view('admin.expanse_management.index');
+    }
+
+    public function indexOwner(Request $request){
+        if ($request->ajax()) {
+            $data = $this->service->getAllLatest(Auth::user()->id);
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->editColumn('harga', function($data){;
+                        return number_format($data->harga,0,'','.');
+                    })
+                    ->editColumn('catatan', function($data){
+                        return $data->catatan ?? '-'; 
+                    })
+                    ->editColumn('action', function($data) {
+                        return $data->id;
+                    })
+                    ->make(true);
+        }
+        return view('admin.expanse_management.owner.index');
     }
 
     public function create()

@@ -16,9 +16,12 @@ class ExpanseService
         $this->repo = $repo;
     }
 
-    public function getAllLatest()
+    public function getAllLatest($idUser = null)
     {
-        return $this->repo->getAllLatest();
+        if($idUser == null){
+            return $this->repo->getAllLatest();
+        }
+        return $this->repo->getAllLatestOwner($idUser);
     }
 
     public function getAll()

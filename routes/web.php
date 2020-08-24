@@ -31,6 +31,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('packages', 'admin\PackageController');
     Route::resource('services', 'admin\ServiceController');
     Route::resource('expanses', 'admin\ExpanseController');
+    Route::get('expanses/owner/get', 'admin\ExpanseController@indexOwner')->name('expanses.indexOwner');
 });
 
 /**

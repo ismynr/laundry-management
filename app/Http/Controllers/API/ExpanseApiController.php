@@ -9,6 +9,7 @@ use App\Http\Requests\ExpanseRequest;
 use App\Services\ExpanseService;
 use App\Traits\ResponseAPI;
 use App\Expanse;
+use Auth;
 
 class ExpanseApiController extends Controller
 {
@@ -62,6 +63,10 @@ class ExpanseApiController extends Controller
             return $this->response("Expanse not found with ID $id", null, 404);
         }
 
+        if($check->id_user != Auth::user()->id){
+            return $this->response("You have no right to change this expanse", null, 401);;
+        }
+        
         $object = $this->service->update($request, $id);
         return $this->response(
             "Expanse has been Updated", $request->all()
@@ -73,6 +78,10 @@ class ExpanseApiController extends Controller
         $check = $this->service->getById($id);            
         if(!$check){
             return $this->response("Expanse not found with ID $id", null, 404);
+        }
+
+        if($check->id_user != Auth::user()->id){
+            return $this->response("You have no right to delete this expanse", null, 401);;
         }
 
         $object = $this->service->delete($id);

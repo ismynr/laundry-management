@@ -29,11 +29,10 @@
             <thead>
               <tr>
                 <th> # </th>
-                <th> Yang Beli </th>
                 <th> Deskripsi </th>
                 <th> Harga </th>
                 <th> Catatan </th>
-                <th width="10%"> Action </th>
+                <th width="23%"> Action </th>
               </tr>
             </thead>
             <tbody> </tbody>
@@ -63,5 +62,5 @@
         });
     </script>
 
-    @include('admin.expanse_management.JS')
+    @include('admin.expanse_management.owner.JS')
 @endpush

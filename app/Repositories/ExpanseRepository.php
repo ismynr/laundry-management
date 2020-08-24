@@ -12,6 +12,11 @@ class ExpanseRepository implements ExpanseRepositoryInterface
         return Expanse::latest()->get();
     }
 
+    public function getAllLatestOwner($idUser)
+    {
+        return Expanse::where('id_user', $idUser)->latest()->get();
+    }
+
     public function getAll()
     {
         return Expanse::all();
