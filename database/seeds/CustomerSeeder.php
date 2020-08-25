@@ -15,6 +15,7 @@ class CustomerSeeder extends Seeder
         $faker = Faker::create('id_ID');
         for ($i=0; $i < 25; $i++) { 
             $customer = new App\Customer;
+            $customer->name      = $faker->name;
             $customer->alamat    = $faker->address;
             $customer->telephone = $faker->numerify('08##########');
             $customer->gender    = $faker->randomElement(['laki-laki','perempuan']);

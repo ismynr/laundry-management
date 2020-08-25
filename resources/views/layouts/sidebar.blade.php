@@ -30,7 +30,7 @@
         </a>
         <div class="collapse" id="ui-user">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Customer</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.customers.index') }}">Customer</a></li>
             <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Karyawan</a></li>
             <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Admin</a></li>
           </ul>

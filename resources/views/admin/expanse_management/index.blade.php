@@ -22,8 +22,6 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">List Biaya Pembelian Laundry</h4>
-          <button type="button" class="addBtn btn btn-gradient-primary btn-sm float-right"><i class="mdi mdi-plus menu-icon"></i> Create</button>
-          
           </p>
           <table class="table table-striped data-table table-responsive dataTable" id="table">
             <thead>
