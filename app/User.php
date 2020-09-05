@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'api_token', 'role'
     ];
 
     /**
@@ -37,16 +38,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function setPasswordAttribute($password)
+    {   
+        $this->attributes['password'] = Hash::make($password);
+    }
+
     public function expanse(){
-        return $this->hasMany('App\Expanse');
+        return $this->hasMany('App\Expanse', 'id_user');
     }
 
     public function karyawan(){
-        return $this->hasOne('App\Karyawan');
+        return $this->hasOne('App\Karyawan', 'id_user');
     }
 
     public function transaction(){
-        return $this->hasMany('App\Transaction');
+        return $this->hasMany('App\Transaction', 'id_user');
     }
 
     public function isAdmin(){

@@ -13,9 +13,9 @@ class KaryawanSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
-        $idUserSuffle = App\User::whereRaw('(id  NOT LIKE 1)')->pluck('id')->toArray();
+        $idUserSuffle = App\User::whereRaw('(id NOT LIKE 1)')->pluck('id')->toArray();
 
-        for ($i=0; $i < 24; $i++) { 
+        for ($i=0; $i < 15; $i++) { 
             $karyawan = new App\Karyawan;
             $karyawan->id_user   = $faker->unique()->randomElement($idUserSuffle);
             $karyawan->alamat    = $faker->address();

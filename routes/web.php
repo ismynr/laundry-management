@@ -32,7 +32,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('services', 'admin\ServiceController');
     Route::resource('expanses', 'admin\ExpanseController');
     Route::resource('customers', 'admin\CustomerController');
-    Route::get('expanses/owner/get', 'admin\ExpanseController@indexOwner')->name('expanses.indexOwner');
+    Route::resource('users', 'admin\UserController');
+    
+    Route::get('expanses/get/owner_expanses', 'admin\ExpanseController@indexOwner')->name('expanses.indexOwner');
+    Route::get('users/get/karyawan_users', 'admin\UserController@indexKaryawan')->name('users.indexKaryawan');
 });
 
 /**

@@ -30,9 +30,8 @@
         </a>
         <div class="collapse" id="ui-user">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.customers.index') }}">Customer</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Karyawan</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Admin</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.users.indexKaryawan') }}">Karyawan</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Admin</a></li>
           </ul>
         </div>
       </li>
@@ -61,6 +60,12 @@
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.expanses.index')}} ">All Expanses</a></li>
           </ul>
         </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.customers.index') }}">
+          <span class="menu-title">Customers</span>
+          <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+        </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="pages/forms/basic_elements.html">

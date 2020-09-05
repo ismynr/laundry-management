@@ -45,8 +45,8 @@
 @endsection
 
 @section('modals')
-  @include('admin.user_management.user_customer.modals.add-modal')
-  @include('admin.user_management.user_customer.modals.edit-modal')
+  @include('admin.customer_management.modals.add-modal')
+  @include('admin.customer_management.modals.edit-modal')
 @endsection
 
 @push('script')
@@ -63,5 +63,5 @@
     });
   </script>
   
-  @include('admin.user_management.user_customer.JS')
+  @include('admin.customer_management.JS')
 @endpush

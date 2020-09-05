@@ -29,7 +29,7 @@ class CustomerController extends Controller
                     ->make(true);
         }
 
-        return view('admin.user_management.user_customer.index');
+        return view('admin.customer_management.index');
     }
 
     public function create()

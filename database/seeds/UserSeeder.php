@@ -14,19 +14,22 @@ class UserSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
+
+        App\User::create([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => 'admin',
+            'api_token' => Str::random(80),
+            'role' => 'admin',
+        ]);
         
-        for ($i=0; $i < 25; $i++) { 
+        for ($i=0; $i < 15; $i++) { 
             $user = new App\User;
             $user->name = $faker->name;
             $user->email = $faker->unique()->email;
-            $user->password = Hash::make($user->email);
-            $user->api_token = Str::random(60);
+            $user->password = $user->email;
+            $user->api_token = Str::random(80);
             $user->role = 'karyawan';
-
-            if($i == 0){
-                $user->role = 'admin';
-            }
-
             $user->save();
         }
     }
