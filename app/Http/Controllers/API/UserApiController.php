@@ -7,21 +7,21 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\UserRequest;
 use App\Services\UserService;
-use App\Services\KaryawanService;
 use App\Traits\ResponseAPI;
 use App\User;
+use Auth;
 
 class UserApiController extends Controller
 {
     use ResponseAPI;
 
     protected $service;
-    protected $karyService;
+    protected $myAuth;
 
-	public function __construct(UserService $service, KaryawanService $karyService)
+	public function __construct(UserService $service)
 	{
         $this->service = $service;
-        $this->karyService = $karyService;
+        $this->myAuth = Auth::guard('api')->user();
     }
     
     public function index()
@@ -47,6 +47,12 @@ class UserApiController extends Controller
 
     public function store(UserRequest $request)
     {
+        if($request->role == "admin"){
+            if($this->myAuth->role != "admin"){
+                $request->role = "karyawan";
+            }
+        }
+
         $object = $this->service->insert($request->all());
 
         return $this->response(

@@ -7,7 +7,7 @@
     <h3 class="page-title">
       <span class="page-title-icon bg-gradient-primary text-white mr-2">
         <i class="mdi mdi-home"></i>
-      </span> Karyawan Users </h3>
+      </span> Admin Users </h3>
     <nav aria-label="breadcrumb">
       <ul class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">
@@ -21,7 +21,7 @@
     <div class="col-lg-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">List Karyawan </h4>
+          <h4 class="card-title">List Admin </h4>
           <button type="button" class="addBtn btn btn-gradient-primary btn-sm float-right"><i class="mdi mdi-plus menu-icon"></i> Create</button>
           
           <table class="table table-striped data-table">
@@ -42,9 +42,8 @@
 @endsection
 
 @section('modals')
-  @include('admin.user_management.user_karyawan.modals.add-modal') {{-- add user --}}
-  @include('admin.user_management.user_karyawan.modals.edit-modal') {{-- edit user --}}
-  @include('admin.user_management.user_karyawan.modals.save-karyawan-modal') {{-- add and edit karyawan --}}
+  @include('admin.user_management.user_admin.modals.add-modal') 
+  @include('admin.user_management.user_admin.modals.edit-modal') 
 @endsection
 
 @push('script')
@@ -61,5 +60,5 @@
     });
   </script>
   
-  @include('admin.user_management.user_karyawan.JS')
+  @include('admin.user_management.user_admin.JS')
 @endpush

@@ -30,8 +30,8 @@
         </a>
         <div class="collapse" id="ui-user">
           <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.users.index') }}">Admin</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.users.indexKaryawan') }}">Karyawan</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Admin</a></li>
           </ul>
         </div>
       </li>

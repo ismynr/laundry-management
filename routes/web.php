@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
  * Middleware Auth Admin
  */
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function (){
-    Route::get('/', 'AdminController@index')->name('dashboard');
+    Route::get('/home', 'AdminController@index')->name('dashboard');
 
     Route::resource('packages', 'admin\PackageController');
     Route::resource('services', 'admin\ServiceController');
@@ -34,7 +34,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('customers', 'admin\CustomerController');
     Route::resource('users', 'admin\UserController');
     
-    Route::get('expanses/get/owner_expanses', 'admin\ExpanseController@indexOwner')->name('expanses.indexOwner');
+    Route::get('expanses/get/your_expanses', 'admin\ExpanseController@indexOwner')->name('expanses.indexOwner');
     Route::get('users/get/karyawan_users', 'admin\UserController@indexKaryawan')->name('users.indexKaryawan');
 });
 
@@ -43,7 +43,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
  * Middleware Auth Karyawan
  */
 Route::middleware(['auth', 'karyawan', 'verified'])->prefix('karyawan')->name('karyawan.')->group(function (){
-    Route::get('/', 'KaryawanController@index')->name('dashboard');
+    Route::get('/home', 'KaryawanController@index')->name('dashboard');
 
     
 });
