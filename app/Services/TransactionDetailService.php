@@ -1,17 +1,15 @@
 <?php 
 namespace App\Services;
 
-use App\Interfaces\CustomerRepositoryInterface;
-use App\Http\Requests\CustomerRequest;
+use App\Interfaces\TransactionDetailRepositoryInterface;
+use Illuminate\Http\Request;
+use App\TransactionDetail;
 
-use App\Customer;
-use Auth;
-
-class CustomerService
+class TransactionDetailService
 {
     protected $repo;
 
-    public function __construct(CustomerRepositoryInterface $repo)
+    public function __construct(TransactionDetailRepositoryInterface $repo)
     {
         $this->repo = $repo;
     }
@@ -36,25 +34,19 @@ class CustomerService
         return $this->repo->getById($id);
     }
 
-    public function insert(CustomerRequest $request)
+    public function insert(array $data)
     {
-        return $this->repo->store($request->all());
+        return $this->repo->store($data);
     }
 
-    public function update(CustomerRequest $request, $id)
+    public function update(array $data, $id)
     {
-        return $this->repo->update($request->all(), $id);
+        return $this->repo->update($data, $id);
     }
 
     public function delete($id)
     {
         return $this->repo->destroy($id);
-    }
-
-    // SELECT2 AUTOCOMPLETE CUSTOMER
-    public function loadSearchCustomerReq($data)
-    {
-        return $this->repo->searchCustomerReq($data);
     }
 }
 

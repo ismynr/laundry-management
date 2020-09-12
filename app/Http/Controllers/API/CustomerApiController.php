@@ -82,4 +82,10 @@ class CustomerApiController extends Controller
             "Customer has been Deleted", $check
         );
     }
+
+    public function loadDataSearchReq(Request $request)
+    {
+        $data = $this->service->loadSearchCustomerReq($request->q);
+        return $this->response("Show customer By " . $request->q, $data);
+    }
 }

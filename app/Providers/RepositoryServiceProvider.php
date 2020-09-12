@@ -16,6 +16,10 @@ use App\Repositories\UserRepository;
 use App\Interfaces\UserRepositoryInterface;
 use App\Repositories\KaryawanRepository;
 use App\Interfaces\KaryawanRepositoryInterface;
+use App\Repositories\TransactionRepository;
+use App\Interfaces\TransactionRepositoryInterface;
+use App\Repositories\TransactionDetailRepository;
+use App\Interfaces\TransactionDetailRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -54,6 +58,16 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             KaryawanRepositoryInterface::class, 
             KaryawanRepository::class
+        );
+
+        $this->app->bind(
+            TransactionRepositoryInterface::class, 
+            TransactionRepository::class
+        );
+        
+        $this->app->bind(
+            TransactionDetailRepositoryInterface::class, 
+            TransactionDetailRepository::class
         );
     }
 

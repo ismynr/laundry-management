@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-interface CustomerRepositoryInterface
+interface TransactionDetailRepositoryInterface
 {
     public function getAllLatest();
 
@@ -17,6 +17,4 @@ interface CustomerRepositoryInterface
     public function update(array $data, $id);
 
     public function destroy($id);
-
-    public function searchCustomerReq($data);
 }

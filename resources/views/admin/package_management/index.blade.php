@@ -33,7 +33,7 @@
                 <th> Tipe Berat </th>
                 <th> Harga Per Berat </th>
                 <th> Tipe Servis </th>
-                <th width="25%"> Action </th>
+                <th width="20%"> Action </th>
               </tr>
             </thead>
             <tbody> </tbody>

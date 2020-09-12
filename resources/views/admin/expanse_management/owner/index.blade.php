@@ -32,7 +32,7 @@
                 <th> Deskripsi </th>
                 <th> Harga </th>
                 <th> Catatan </th>
-                <th width="23%"> Action </th>
+                <th width="20%"> Action </th>
               </tr>
             </thead>
             <tbody> </tbody>

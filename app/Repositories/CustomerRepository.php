@@ -40,4 +40,10 @@ class CustomerRepository implements CustomerRepositoryInterface
     {
         return Customer::destroy($id);
     }
+
+    public function searchCustomerReq($data){
+        return Customer::whereRaw("(name LIKE '%".$data."%')")
+                ->limit(30)
+                ->get();
+    }
 }

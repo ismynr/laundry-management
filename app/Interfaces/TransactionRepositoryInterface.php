@@ -2,13 +2,15 @@
 
 namespace App\Interfaces;
 
-interface CustomerRepositoryInterface
+interface TransactionRepositoryInterface
 {
     public function getAllLatest();
 
     public function getAll();
 
     public function getBy($column, $data);
+
+    public function getCountJoinTdBy($column, $data);
 
     public function getById($id);
 
@@ -17,6 +19,4 @@ interface CustomerRepositoryInterface
     public function update(array $data, $id);
 
     public function destroy($id);
-
-    public function searchCustomerReq($data);
 }

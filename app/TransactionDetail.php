@@ -8,6 +8,9 @@ class TransactionDetail extends Model
 {
     protected $table = 'transaction_details';
     protected $primaryKey = 'id';
+    protected $fillable = [
+        'id_transaction', 'id_package', 'qty', 'harga', 'status'
+    ];
 
     public function transaction(){
         return $this->belongsTo('App\Transaction', 'id_transaction');

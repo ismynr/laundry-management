@@ -68,13 +68,15 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/forms/basic_elements.html">
+        <a class="nav-link" href="{{ route('admin.transactions.index') }}">
           <span class="menu-title">Transaction</span>
           <i class="mdi mdi-format-list-bulleted menu-icon"></i>
         </a>
       </li>
       <li class="nav-item sidebar-actions">
-        <button class="btn btn-block btn-md btn-gradient-primary mt-1"><i class="mdi mdi-plus-circle menu-icon"></i> Transaction</button>
+        <a href="{{ route('admin.transactions.create') }}" class="btn btn-block btn-md btn-gradient-primary mt-1">
+          <i class="mdi mdi-plus-circle menu-icon"></i> Transaction
+        </a>
       </li>
 
       @elseif(Auth::user()->isKaryawan())
