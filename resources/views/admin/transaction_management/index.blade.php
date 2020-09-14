@@ -28,6 +28,7 @@
                 <th> # </th>
                 <th> Code </th>
                 <th> Nama Customer </th>
+                <th> Status </th>
                 <th> Total Harga </th>
                 <th> Jml Transaksi </th>
                 <th width="20%"> Action </th>

@@ -29,9 +29,14 @@ class TransactionService
         return $this->repo->getBy($column, $data);
     }
 
-    public function getCountJoinTdBy($column, $data)
+    public function getCountJoinTdBy($column, $id)
     {
-        return $this->repo->getCountJoinTdBy($column, $data);
+        return $this->repo->getCountJoinTdBy($column, $id);
+    }
+
+    public function getTotalHargaById($id_transaction)
+    {
+        return $this->repo->getTotalHargaById($id_transaction);
     }
     
     public function getById($id)

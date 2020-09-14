@@ -21,12 +21,21 @@ class TransactionRepository implements TransactionRepositoryInterface
         return Transaction::where($column, $data)->get();
     }
 
-    public function getCountJoinTdBy($column, $data){
-        return Transaction::where($column, $data)
+    public function getCountJoinTdBy($column, $id){
+        return Transaction::where($column, $id)
                     ->join('transaction_details', 'transactions.id', '=', 'transaction_details.id_transaction')
                     ->count();
     }
-    
+
+    public function getTotalHargaById($id_transaksi){
+        $query = Transaction::select(\DB::raw('SUM(transaction_details.harga) as total'))
+                    ->where("transactions.id", $id_transaksi)
+                    ->join('transaction_details', 'transactions.id', '=', 'transaction_details.id_transaction')
+                    ->groupBy('transactions.id')
+                    ->get()->toArray();
+        return $query;
+    }
+
     public function getById($id)
     {
         return Transaction::find($id);

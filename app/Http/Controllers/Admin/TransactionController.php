@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\TransactionRequest;
 use App\Services\TransactionService;
+use App\Traits\OtherFunc;
 use DataTables;
 use DateTime;
 
 class TransactionController extends Controller
 {
+    use OtherFunc;
     protected $service;
 
 	public function __construct(TransactionService $service)
@@ -31,6 +33,12 @@ class TransactionController extends Controller
                     ->editColumn('jml_transaction', function($data){
                         $count = $this->service->getCountJoinTdBy("transactions.id", $data->id);
                         return $count;
+                    })
+                    ->editColumn('total_harga', function($data){
+                        return $this->rupiah($this->service->getTotalHargaById($data->id)[0]["total"] ?? "0");
+                    })
+                    ->editColumn('status', function($data){
+                        return is_null($data->end_date) ? "Berjalan" : "Selesai" ;
                     })
                     ->editColumn('action', function($data) {
                         return $data->id;
@@ -80,23 +88,8 @@ class TransactionController extends Controller
         //
     }
 
-    public function addItem(Request $request){
-        $item = session()->get('item');
-        // if(!$item) {
-            $item = [
-                "id_transaction" => $request->id_transaction,
-                "id_package" => $request->id_package,
-                "qty" => $request->$qty,
-                "harga" => $request->harga
-            ];
- 
-            session()->put('item', $item);
-        // }
- 
-        dd (response()->json($item));
-    }
-
-    public function klaimTransaksi(){
+    public function klaimTransaksi()
+    {
         
     }
 }

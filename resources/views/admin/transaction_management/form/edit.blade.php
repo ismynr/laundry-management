@@ -57,7 +57,6 @@
                     @else
                         <td><span class="badge badge-success">Berjalan</span></td>
                     @endif
-                    
                 </tr>
             </table>
             <table class="table table-borderless">

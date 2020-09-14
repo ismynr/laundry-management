@@ -81,4 +81,22 @@ class TransactionDetailApiController extends Controller
 
         return $this->response("Transaction Detail Deleted", $object);
     }
+
+    public function destroyByIdTrans($id_transaction){
+        $object = $this->service->getBy('id_transaction', $id_transaction);
+
+        // JADIKAN ARRAY UNTUK AMBIL ID TRANSACTION DETAILNYA
+        $arrayObj = [];
+        foreach($object as $obj){
+            $arrayObj[] = $obj->id;
+        }
+
+        $rem = $this->service->delete($arrayObj);
+        
+        if(!$object){
+            return $this->response("No transaction detail with ID Transaction ", null, 404);        
+        }
+
+        return $this->response("Transaction Detail Deleted", $rem);
+    }
 }

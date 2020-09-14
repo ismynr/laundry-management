@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Services\ExpanseService;
+use App\Traits\OtherFunc;
 use DataTables;
 use Auth;
 
 class ExpanseController extends Controller
 {
+    use OtherFunc;
     protected $service;
 
 	public function __construct(ExpanseService $service)
@@ -28,7 +30,7 @@ class ExpanseController extends Controller
                         return $data->user->name;
                     })
                     ->editColumn('harga', function($data){
-                        return number_format($data->harga,0,'','.');
+                        return $this->rupiah($data->harga);
                     })
                     ->editColumn('deskripsi', function($data){
                         $desk = $data->deskripsi;
@@ -58,7 +60,7 @@ class ExpanseController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->editColumn('harga', function($data){;
-                        return number_format($data->harga,0,'','.');
+                        return $this->rupiah($data->harga);
                     })
                     ->editColumn('catatan', function($data){
                         return $data->catatan ?? '-'; 

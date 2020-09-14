@@ -10,7 +10,9 @@ interface TransactionRepositoryInterface
 
     public function getBy($column, $data);
 
-    public function getCountJoinTdBy($column, $data);
+    public function getCountJoinTdBy($column, $id);
+
+    public function getTotalHargaById($id_transaksi);
 
     public function getById($id);
 
