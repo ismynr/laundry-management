@@ -27,7 +27,6 @@ class TransactionRequest extends FormRequest
             'id_customer' => 'required|numeric',
             'id_user' => 'required|numeric',
             'code' => 'required',
-            'total_harga' => 'required',
         ];
     }
 
@@ -44,11 +43,6 @@ class TransactionRequest extends FormRequest
             $merg['id_user'] = $apiUserId;
         }else{
             $merg['id_user'] = \Auth::user()->id;
-        }
-
-        // IF EMPTY ID (STORE)
-        if(!$this->request->get('id')){
-            $merg['total_harga'] = 0;
         }
         
         $this->merge($merg);

@@ -71,16 +71,13 @@
                     <td class="text-right">{{ $transaction->user->name }}</td>
                 </tr>
             </table>
-            <button class="btn btn-light float-right mr-2" title="Klaim transaksi terlebih dahulu" disabled>
-              <i class="mdi mdi-printer"></i> Cetak Kuitansi
-            </button>
-            <button onclick="as()" class="btn btn-light float-right mr-2">
-              <i class="mdi mdi-file-document"></i> Cetak Transaksi
-            </button>
-            <button onclick="claimTransaction('/admin/transactions/claim/detail-item/{{ $transaction->id }}')" 
+            <a href="{{ route('admin.transactions.invoice', $transaction->id) }}" target="_blank" class="btn btn-light float-right mr-2">
+              <i class="mdi mdi-file-document"></i> Cetak Kuitansi
+            </a>
+            <a href="#" onclick="claimTransaction('{{ route('admin.transactions.claimTransaction', $transaction->id) }}')" 
               class="btn btn-light float-right mr-2">
               <i class="mdi mdi-check"></i> Klaim Transaksi selesai
-            </button>
+            </a>
         </div>
       </div>
     </div>

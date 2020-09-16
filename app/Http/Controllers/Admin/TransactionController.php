@@ -9,6 +9,7 @@ use App\Http\Requests\TransactionRequest;
 use App\Services\TransactionService;
 use DataTables;
 use DateTime;
+use PDF;
 
 class TransactionController extends Controller
 {
@@ -88,6 +89,15 @@ class TransactionController extends Controller
         //
     }
 
+    public function destroy($id)
+    {
+        //
+    }
+
+    /**
+     * 
+     * CUSTOM FUNCTION OR ROUTE
+     */
     public function claimTransaction(Request $request, $id){
         $check = $this->service->getById($id);
 
@@ -114,8 +124,14 @@ class TransactionController extends Controller
                     ->with('success', 'Transaksi telah selesai, Anda dapat mencetak struk kuitansi transaksi!');
     }
 
-    public function destroy($id)
+    public function generateInvoice($id)
     {
-        //
+        $invoice = $this->service->getById($id);
+        $now =  new DateTime();
+        if(!$invoice){ return abort(404); }
+
+        $pdf = PDF::loadView('admin.transaction_management.invoice.print', compact('invoice', 'now'))
+                        ->setPaper('a5', 'potrait');
+        return $pdf->stream();
     }
 }

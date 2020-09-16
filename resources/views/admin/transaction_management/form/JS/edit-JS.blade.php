@@ -258,7 +258,6 @@
                 confirmButtonText: 'Yes, delete it!'
             })
             .then((result) => {
-                console.log(result.value);
                 if (result.value) {
                     window.location.href = url;
                 }

@@ -52,7 +52,7 @@
                 <tr>
                     <th class="text-right">Status Transaksi</th>
                     <th class="text-center">:</th>
-                    <td><span class="badge badge-danger">Selesai</span> Pada {{ $transaction->end_date }}</td>
+                    <td><span class="badge badge-dark">Selesai</span> Pada {{ $transaction->end_date }}</td>
                 </tr>
             </table>
             <table class="table table-borderless">
@@ -61,12 +61,9 @@
                     <td class="text-right">{{ $transaction->user->name }}</td>
                 </tr>
             </table>
-            <button class="btn btn-light float-right mr-2">
-              <i class="mdi mdi-printer"></i> Cetak Kuitansi
-            </button>
-            <button onclick="as()" class="btn btn-light float-right mr-2">
-              <i class="mdi mdi-file-document"></i> Cetak Transaksi
-            </button>
+            <a href="{{ route('admin.transactions.invoice', $transaction->id) }}" target="_blank" class="btn btn-light float-right mr-2">
+              <i class="mdi mdi-file-document"></i> Cetak Kuitansi
+            </a>
             <button class="btn btn-light float-right mr-2" disabled>
               <i class="mdi mdi-check"></i> Klaim Transaksi selesai
             </button>
@@ -146,25 +143,3 @@
     </div>
   </div>
 @endsection
-
-@section('modals')
-  @include('admin.transaction_management.modals.package-tb-modal')
-@endsection
-
-
-@push('script')
-    <script>
-        $(function () {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                },
-                beforeSend: function(xhr) {
-                    xhr.setRequestHeader('Authorization', 'Bearer {{ Auth::user()->api_token }}');
-                }
-            });
-        });
-    </script>
-
-    @include('admin.transaction_management.form.JS.edit-JS')
-@endpush

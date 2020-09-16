@@ -50,7 +50,7 @@
                       <label for="name" class="col-form-label">Customer:</label>
                       <select class="select2_id_customer form-control select2" id="id_customer" name="id_customer"></select>
                   </div>
-                    <button type="submit" class="btn btn-gradient-primary float-right" >Save</button>
+                    <button type="submit" class="btn btn-gradient-primary float-right" >Buat Transaksi</button>
                 </div>
             </form>
         </div>
