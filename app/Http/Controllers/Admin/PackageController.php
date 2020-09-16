@@ -6,12 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Services\PackageService;
-use App\Traits\OtherFunc;
 use DataTables;
 
 class PackageController extends Controller
 {
-    use OtherFunc;
     protected $service;
 
 	public function __construct(PackageService $service)
@@ -27,7 +25,7 @@ class PackageController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->editColumn('harga', function($data){
-                        return $this->rupiah($data->harga);
+                        return \FormatHelp::rupiah($data->harga);
                     })
                     ->editColumn('service', function ($data){
                         return $data->service->service_type ?? "-";

@@ -28,6 +28,9 @@ class TransactionDetailController extends Controller
                     ->editColumn('package', function($data){
                         return $data->package->nama_paket;
                     })
+                    ->editColumn('qty', function($data){
+                        return $data->qty . " " . $data->package->tipe_berat;
+                    })
                     ->editColumn('action', function($data) {
                         $d['id'] = $data->id;
                         $d['status'] = $data->status;

@@ -18,7 +18,6 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('id_customer');
             $table->unsignedBigInteger('id_user');
             $table->string('code')->unique();
-            $table->integer('total_harga');
             $table->dateTime('start_date');
             $table->dateTime('end_date')->nullable();
             $table->timestamps();

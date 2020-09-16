@@ -26,6 +26,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('transaction-details', 'admin\TransactionDetailController');
 
     Route::post('transactions/add/detail-item', 'admin\TransactionController@addItem')->name('transactions.addItem');
+    Route::get('transactions/claim/detail-item/{id}', 'admin\TransactionController@claimTransaction')->name('transactions.claimTransaction');
     
     Route::get('expanses/get/your_expanses', 'admin\ExpanseController@indexOwner')->name('expanses.indexOwner');
     Route::get('users/get/karyawan_users', 'admin\UserController@indexKaryawan')->name('users.indexKaryawan');

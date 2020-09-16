@@ -178,6 +178,7 @@ return [
         // CUSTOM 
         Yajra\DataTables\DataTablesServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
+        App\Providers\HelperServiceProvider::class,
     ],
 
     /*
@@ -232,6 +233,7 @@ return [
 
         // CUSTOM
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'FormatHelp' => App\Helpers\FormatHelper::class,
     ],
 
 ];

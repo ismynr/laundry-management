@@ -21,16 +21,16 @@
     <div class="col-lg-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">List Transaction </h4>
+          <h4 class="card-title">Antrian Transaksi </h4>
           <table class="table table-striped data-table">
             <thead>
               <tr>
                 <th> # </th>
-                <th> Code </th>
+                <th width="20%"> Code </th>
                 <th> Nama Customer </th>
                 <th> Status </th>
                 <th> Total Harga </th>
-                <th> Jml Transaksi </th>
+                <th width="5"> Jml Trans </th>
                 <th width="20%"> Action </th>
               </tr>
             </thead>
