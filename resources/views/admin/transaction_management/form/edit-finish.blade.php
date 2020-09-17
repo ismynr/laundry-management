@@ -61,8 +61,11 @@
                     <td class="text-right">{{ $transaction->user->name }}</td>
                 </tr>
             </table>
+            <button class="btn btn-light float-right mr-2" disabled>
+              <i class="mdi mdi-bookmark"></i> Cetak Tanda
+            </button>
             <a href="{{ route('admin.transactions.invoice', $transaction->id) }}" target="_blank" class="btn btn-light float-right mr-2">
-              <i class="mdi mdi-file-document"></i> Cetak Kuitansi
+              <i class="mdi mdi-printer"></i> Cetak Kuitansi
             </a>
             <button class="btn btn-light float-right mr-2" disabled>
               <i class="mdi mdi-check"></i> Klaim Transaksi selesai

@@ -22,7 +22,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Antrian Transaksi </h4>
-          <table class="table table-striped data-table">
+          <table class="table table-striped data-table table-responsive">
             <thead>
               <tr>
                 <th> # </th>

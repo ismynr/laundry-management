@@ -71,8 +71,11 @@
                     <td class="text-right">{{ $transaction->user->name }}</td>
                 </tr>
             </table>
+            <a href="#" id="printMarkBtn" class="btn btn-light float-right mr-2">
+              <i class="mdi mdi-bookmark"></i> Cetak Tanda
+            </a>
             <a href="{{ route('admin.transactions.invoice', $transaction->id) }}" target="_blank" class="btn btn-light float-right mr-2">
-              <i class="mdi mdi-file-document"></i> Cetak Kuitansi
+              <i class="mdi mdi-printer"></i> Cetak Kuitansi
             </a>
             <a href="#" onclick="claimTransaction('{{ route('admin.transactions.claimTransaction', $transaction->id) }}')" 
               class="btn btn-light float-right mr-2">
@@ -87,7 +90,7 @@
           <center><h4><b>List Item Transaksi</b></h4></center>
         </div>
         <div class="card-body">
-          <table class="table data-table dataTables" id="table-detailTr">
+          <table class="table data-table dataTables table-responsive" id="table-detailTr">
             <thead>
               <tr>
                 <th> # </th>
@@ -130,7 +133,7 @@
             </div>
             <div class="form-group">
               <label for="name" class="col-form-label">Qty (Berapa berat):</label>
-              <input type="text" id="qty" class="form-control" name="qty" value="1">
+              <input type="number" min="1" id="qty" class="form-control" name="qty" value="1">
               <small class="error_qty text-danger hidden"></small>
             </div>
             <div class="form-group">
@@ -149,6 +152,7 @@
 
 @section('modals')
   @include('admin.transaction_management.modals.package-tb-modal')
+  @include('admin.transaction_management.modals.print-mark-modal')
 @endsection
 
 

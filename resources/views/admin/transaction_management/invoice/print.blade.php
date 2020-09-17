@@ -6,14 +6,12 @@
     <style>
     .invoice-box {
         max-width: 800px;
-        margin: auto;
         padding: 30px;
         border: 1px solid #eee;
         box-shadow: 0 0 10px rgba(0, 0, 0, .15);
         font-size: 12px;
         line-height: 18px;
         font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-        color: #555;
     }
     
     .invoice-box table {
@@ -106,12 +104,12 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="https://www.sparksuite.com/images/logo.png" style="width:100%; max-width:130px;">
+                                {{-- <img src="https://www.sparksuite.com/images/logo.png" style="width:100%; max-width:130px;"> --}}
                             </td>
                             <td>
-                                Invoice #:{{ $invoice->code }}<br>
-                                Created: {{ date('l, d-m-Y', strtotime($invoice->start_date)) }}<br>
-                                Due: {{ date('l, d-m-Y') }}
+                                Invoice #{{ $invoice->code }}<br>
+                                Dibuat: {{ date('l, d-m-Y', strtotime($invoice->start_date)) }}<br>
+                                Sekarang: {{ date('l, d-m-Y') }}
                             </td>
                         </tr>
                     </table>

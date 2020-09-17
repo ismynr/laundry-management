@@ -19,8 +19,10 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false,
                 render: function( data, _type, _full ) {
                             let btn;
-                            btn = '<a href="{{ route("admin.transactions.index") }}/'+ data +'/edit" class="viewBtn btn btn-gradient-primary btn-sm mr-1" title="view"><i class="mdi mdi-eye menu-icon"></i></a>';
-                            btn += '<button data-id="/api/admin/transactions/' + data + '" data-id_item="/api/admin/transaction-details/delete-by-idtrans/' + data + '" class="deleteBtn btn btn-gradient-danger btn-sm"><i class="mdi mdi-delete menu-icon"></i> Delete</button>';
+                            btn = '<a href="{{ route("admin.transactions.index") }}/'+ data.id +'/edit" class="viewBtn btn btn-gradient-primary btn-sm mr-1" title="view"><i class="mdi mdi-eye menu-icon"></i></a>';
+                            if(data.end_date == null){
+                                btn += '<button data-id="/api/admin/transactions/' + data.id + '" data-id_item="/api/admin/transaction-details/delete-by-idtrans/' + data.id + '" class="deleteBtn btn btn-gradient-danger btn-sm"><i class="mdi mdi-delete menu-icon"></i> Delete</button>';
+                            }
                             return btn;
                 }},
             ]

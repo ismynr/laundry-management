@@ -24,7 +24,7 @@
           <h4 class="card-title">List Karyawan </h4>
           <button type="button" class="addBtn btn btn-gradient-primary btn-sm float-right"><i class="mdi mdi-plus menu-icon"></i> Create</button>
           
-          <table class="table table-striped data-table">
+          <table class="table table-striped data-table table-responsive">
             <thead>
               <tr>
                 <th> # </th>

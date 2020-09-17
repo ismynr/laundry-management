@@ -27,6 +27,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     Route::get('transactions/{id}/claim', 'admin\TransactionController@claimTransaction')->name('transactions.claimTransaction');
     Route::get('transaction/{id}/invoice', 'admin\TransactionController@generateInvoice')->name('transactions.invoice');
+    Route::POST('transaction/{id}/invoice/mark', 'admin\TransactionController@generateMark')->name('transactions.invoice.mark');
+    Route::get('transaction-details/get/mark', 'admin\TransactionDetailController@indexMark')->name('transaction-details.indexMark');
     
     Route::get('expanses/get/your_expanses', 'admin\ExpanseController@indexOwner')->name('expanses.indexOwner');
     Route::get('users/get/karyawan_users', 'admin\UserController@indexKaryawan')->name('users.indexKaryawan');

@@ -40,6 +40,25 @@ class TransactionDetailController extends Controller
         }
     }
 
+    public function indexMark(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = $this->service->getBy('id_transaction', $request->id_transaction);
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->editColumn('package', function($data){
+                        return $data->package->nama_paket;
+                    })
+                    ->editColumn('qty', function($data){
+                        return $data->qty . " " . $data->package->tipe_berat;
+                    })
+                    ->editColumn('action', function($data) {
+                        return $data->id;
+                    })
+                    ->make(true);
+        }
+    }
+
     public function create()
     {
         //

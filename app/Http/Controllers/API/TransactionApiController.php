@@ -55,12 +55,17 @@ class TransactionApiController extends Controller
 
     public function destroy($id)
     {
-        $object = $this->service->delete($id);
+        $check = $this->service->getById($id);
         
-        if(!$object){
+        if(!$check){
             return $this->response("No transaction with ID $id", null, 404);        
         }
 
+        if($check->end_date != null){
+            return $this->response("Cannot delete with ID $id", null, 302);
+        }
+
+        $object = $this->service->delete($id);
         return $this->response("Transaction Deleted", $object);
     }
 }

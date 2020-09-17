@@ -90,6 +90,38 @@
         $('#qty').keyup(function() {
             setHarga();
         });
+
+        // DATATABLES COUNT TOTAL PRINT MARK CONFIG (MODAL VIEW)
+        let tablePrintMark = $('#table-print-mark').DataTable({
+            processing: true, serverSide: true, bPaginate: false,
+            bFilter: true,    ordering: false,  bInfo: false,
+            searching: false,
+            ajax: {
+                'type': 'GET',
+                'url': '{{ route("admin.transaction-details.indexMark") }}',
+                'data': { id_transaction: '{{ $transaction->id }}' }
+            },
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'package', name: 'package'},
+                {data: 'qty', name: 'qty'},
+                {data: 'harga', name: 'harga', 
+                    render: function(data, _type, _full){
+                        return rupiah(data);
+                    }
+                },
+                {data: 'action', name: 'action', orderable: false, searchable: false,
+                    render: function( data, _type, _full ) {
+                        return '<input type="number" min="1" max="999" style="width:50px;height:40px;" class="" value="1" name="'+data+'" required/>';
+                }},
+            ]
+        });
+
+        // SHOW COUNT TOTAL PRINT MARK
+        $('#printMarkBtn').click(function(){
+            $('#printMarkModal').modal('show');
+            tablePrintMark.draw();
+        });
     
         let Vdef = {
             'column' : { 

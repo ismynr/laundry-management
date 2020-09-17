@@ -91,6 +91,10 @@ class TransactionDetailApiController extends Controller
             $arrayObj[] = $obj->id;
         }
 
+        if($object[0]->transaction->end_date != null){
+            return $this->response("Cannot delete with ID ".$object[0]->id, null, 302);
+        }
+
         $rem = $this->service->delete($arrayObj);
         
         if(!$object){

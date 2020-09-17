@@ -40,7 +40,9 @@ class TransactionController extends Controller
                         return is_null($data->end_date) ? "Berjalan" : "Selesai" ;
                     })
                     ->editColumn('action', function($data) {
-                        return $data->id;
+                        $d['id'] = $data->id;
+                        $d['end_date'] = $data->end_date;
+                        return $d;
                     })
                     ->make(true);
         }
@@ -131,6 +133,19 @@ class TransactionController extends Controller
         if(!$invoice){ return abort(404); }
 
         $pdf = PDF::loadView('admin.transaction_management.invoice.print', compact('invoice', 'now'))
+                        ->setPaper('a5', 'potrait');
+        return $pdf->stream();
+    }
+
+    public function generateMark(Request $request, $id)
+    {
+        $invoice = $this->service->getById($id);
+        if(!$invoice){ return abort(404); }
+
+        $arrPrintMark = $request->all();
+        unset($arrPrintMark["_token"]);
+        
+        $pdf = PDF::loadView('admin.transaction_management.invoice.print-mark', compact('invoice', 'arrPrintMark'))
                         ->setPaper('a5', 'potrait');
         return $pdf->stream();
     }
