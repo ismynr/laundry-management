@@ -90,7 +90,7 @@
           <center><h4><b>List Item Transaksi</b></h4></center>
         </div>
         <div class="card-body">
-          <table class="table data-table dataTables table-responsive" id="table-detailTr">
+          <table class="table data-table dataTables" id="table-detailTr">
             <thead>
               <tr>
                 <th> # </th>

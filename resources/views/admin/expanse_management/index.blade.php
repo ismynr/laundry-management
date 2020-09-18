@@ -23,7 +23,7 @@
         <div class="card-body">
           <h4 class="card-title">List Biaya Pembelian Laundry</h4>
           </p>
-          <table class="table table-striped data-table table-responsive dataTable" id="table">
+          <table class="table table-striped data-table dataTable" id="table">
             <thead>
               <tr>
                 <th> # </th>
