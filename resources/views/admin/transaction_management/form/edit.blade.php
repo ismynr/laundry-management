@@ -57,7 +57,7 @@
                 <tr>
                     <th class="text-right">Dibuat pada</th>
                     <th class="text-center">:</th>
-                    <td>{{ $transaction->start_date }}</td>
+                    <td>{{ FormatHelp::hari_tanggal($transaction->start_date) }}</td>
                 </tr>
                 <tr>
                     <th class="text-right">Status Transaksi</th>

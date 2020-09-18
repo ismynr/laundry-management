@@ -108,8 +108,8 @@
                             </td>
                             <td>
                                 Invoice #{{ $invoice->code }}<br>
-                                Dibuat: {{ date('l, d-m-Y', strtotime($invoice->start_date)) }}<br>
-                                Sekarang: {{ date('l, d-m-Y') }}
+                                Dibuat: {{ FormatHelp::hari($invoice->start_date) }}<br>
+                                Hari ini: {{ FormatHelp::hari(date('d-m-Y')) }}
                             </td>
                         </tr>
                     </table>

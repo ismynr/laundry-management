@@ -26,7 +26,7 @@
         <a class="nav-link" data-toggle="collapse" href="#ui-user" aria-expanded="false" aria-controls="ui-user">
           <span class="menu-title">User</span>
           <i class="menu-arrow"></i>
-          <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+          <i class="mdi mdi-account menu-icon"></i>
         </a>
         <div class="collapse" id="ui-user">
           <ul class="nav flex-column sub-menu">
@@ -39,7 +39,7 @@
         <a class="nav-link" data-toggle="collapse" href="#ui-pack" aria-expanded="false" aria-controls="ui-pack">
           <span class="menu-title">Package</span>
           <i class="menu-arrow"></i>
-          <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+          <i class="mdi mdi-package-variant menu-icon"></i>
         </a>
         <div class="collapse" id="ui-pack">
           <ul class="nav flex-column sub-menu">
@@ -52,7 +52,7 @@
         <a class="nav-link" data-toggle="collapse" href="#ui-expanses" aria-expanded="false" aria-controls="ui-expanses">
           <span class="menu-title">Expanses</span>
           <i class="menu-arrow"></i>
-          <i class="mdi mdi-contacts menu-icon"></i>
+          <i class="mdi mdi-cart-outline menu-icon"></i>
         </a>
         <div class="collapse" id="ui-expanses">
           <ul class="nav flex-column sub-menu">
@@ -64,19 +64,19 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.customers.index') }}">
           <span class="menu-title">Customers</span>
-          <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+          <i class="mdi mdi-account-card-details menu-icon"></i>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="pages/forms/basic_elements.html">
           <span class="menu-title">Web Config</span>
-          <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+          <i class="mdi mdi-settings menu-icon"></i>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.transactions.index') }}">
           <span class="menu-title">Transaction</span>
-          <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+          <i class="mdi mdi-coin menu-icon"></i>
         </a>
       </li>
       <li class="nav-item sidebar-actions">

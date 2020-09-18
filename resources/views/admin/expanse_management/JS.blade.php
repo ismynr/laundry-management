@@ -5,6 +5,7 @@
         let table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
+            responsive: true,
             ajax: "{{ route('admin.expanses.index') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -56,7 +57,7 @@
                                 '</tr>'+
                                 '<tr>'+
                                     '<th class="text-right">Dibuat Pada : </th>'+
-                                    '<td class="text-left">'+results.created_at+'</td>'+
+                                    '<td class="text-left">{{FormatHelp::hari_tanggal('+results.created_at+')}}</td>'+
                                 '</tr>'+
                             '</table>',
                         showCancelButton: false,

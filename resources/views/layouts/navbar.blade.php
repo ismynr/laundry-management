@@ -22,7 +22,7 @@
             </div>
           </a>
           <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="{{ route('admin.profile.index') }}">
               <i class="mdi mdi-face-profile mr-2 text-black"></i> {{ __('Profile') }} 
             </a>
             <div class="dropdown-divider"></div>

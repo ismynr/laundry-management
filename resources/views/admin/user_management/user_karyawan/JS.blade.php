@@ -5,6 +5,7 @@
         let table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
+            responsive: true,
             ajax: "{{ route('admin.users.indexKaryawan') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},

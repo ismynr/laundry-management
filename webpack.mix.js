@@ -18,6 +18,7 @@ mix.styles([
     'public/assets/vendors/css/vendor.bundle.base.css',
     'public/assets/css/style.css',
     'public/assets/datatables/dataTables.bootstrap4.min.css',
+    'public/assets/datatables/responsive.bootstrap.min.css',
     'public/assets/select2/select2.min.css',
     'public/assets/select2/bootstrap.select2.min.css',
 ], 'public/css/all.css');
@@ -34,5 +35,7 @@ mix.scripts([
     'public/assets/js/sweetalert.js',
     'public/assets/datatables/jquery.dataTables.min.js',
     'public/assets/datatables/dataTables.bootstrap4.min.js',
+    'public/assets/datatables/dataTables.responsive.min.js',
+    'public/assets/datatables/responsive.bootstrap.min.js',
     'public/assets/select2/select2.full.min.js',
 ], 'public/js/all.js');

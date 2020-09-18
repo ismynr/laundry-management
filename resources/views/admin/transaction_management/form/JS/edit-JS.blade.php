@@ -5,6 +5,7 @@
         let tablePackage = $('#table-package').DataTable({
             processing: true,
             serverSide: true,
+            responsive: true,
             ajax: "{{ route('admin.packages.index') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -19,7 +20,7 @@
         let tableDetailTr = $('#table-detailTr').DataTable({
             processing: true, serverSide: true, bPaginate: false,
             bFilter: true,    ordering: false,  bInfo: false,
-            searching: false,
+            searching: false, responsive: true,
             ajax: {
                 'type': 'GET',
                 'url': '{{ route("admin.transaction-details.index") }}',
@@ -95,7 +96,7 @@
         let tablePrintMark = $('#table-print-mark').DataTable({
             processing: true, serverSide: true, bPaginate: false,
             bFilter: true,    ordering: false,  bInfo: false,
-            searching: false,
+            searching: false, responsive: true,
             ajax: {
                 'type': 'GET',
                 'url': '{{ route("admin.transaction-details.indexMark") }}',

@@ -18,7 +18,7 @@
                 @endif
                     <td style="border: 1px solid #eee; padding:15px; font-size:12px; line-height:18px">
                         Invoice #{{ $invoice->code }}<br>
-                        Dibuat: {{ date('l, d-m-Y', strtotime($invoice->start_date)) }}<br>
+                        Dibuat: {{ FormatHelp::hari($invoice->start_date) }}<br>
                         Pelanggan: {{ $invoice->customer->name }}  
                         <hr>
                         Paket: {{ $item->package->nama_paket }}<br>
@@ -43,7 +43,7 @@
                                 @endif
                                     <td style="border: 1px solid #eee; padding:15px; font-size:12px; line-height:18px">
                                         Invoice #{{ $invoice->code }}<br>
-                                        Dibuat: {{ date('l, d-m-Y', strtotime($invoice->start_date)) }}<br>
+                                        Dibuat: {{ FormatHelp::hari($invoice->start_date) }}<br>
                                         Pelanggan: {{ $invoice->customer->name }}  
                                         <hr>
                                         Paket: {{ $item->package->nama_paket }}<br>
