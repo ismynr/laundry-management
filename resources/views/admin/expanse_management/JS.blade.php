@@ -57,7 +57,7 @@
                                 '</tr>'+
                                 '<tr>'+
                                     '<th class="text-right">Dibuat Pada : </th>'+
-                                    '<td class="text-left">{{FormatHelp::hari_tanggal('+results.created_at+')}}</td>'+
+                                    '<td class="text-left">'+(new Date(results.updated_at))+'</td>'+
                                 '</tr>'+
                             '</table>',
                         showCancelButton: false,

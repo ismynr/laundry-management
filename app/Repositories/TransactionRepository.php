@@ -12,6 +12,11 @@ class TransactionRepository implements TransactionRepositoryInterface
         return Transaction::latest()->get();
     }
 
+    public function getAllLatestLimit($limit)
+    {
+        return Transaction::latest()->limit($limit)->get();
+    }
+
     public function getAll()
     {
         return Transaction::all();

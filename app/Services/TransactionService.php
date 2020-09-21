@@ -19,6 +19,10 @@ class TransactionService
         return $this->repo->getAllLatest();
     }
 
+    public function getAllLatestLimit($limit){
+        return $this->repo->getAllLatestLimit($limit);
+    }
+
     public function getAll()
     {
         return $this->repo->getAll();

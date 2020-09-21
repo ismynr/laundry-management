@@ -47,12 +47,12 @@
                 <tr>
                     <th class="text-right">Dibuat pada</th>
                     <th class="text-center">:</th>
-                    <td>{{ $transaction->start_date }}</td>
+                    <td>{{ FormatHelp::hari_tanggal($transaction->start_date) }}</td>
                 </tr>
                 <tr>
                     <th class="text-right">Status Transaksi</th>
                     <th class="text-center">:</th>
-                    <td><span class="badge badge-dark">Selesai</span> Pada {{ $transaction->end_date }}</td>
+                    <td><span class="badge badge-dark">Selesai</span> {{ FormatHelp::hari_tanggal($transaction->end_date) }}</td>
                 </tr>
             </table>
             <table class="table table-borderless">

@@ -6,6 +6,8 @@ interface TransactionRepositoryInterface
 {
     public function getAllLatest();
 
+    public function getAllLatestLimit($limit);
+
     public function getAll();
 
     public function getBy($column, $data);

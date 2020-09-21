@@ -26,7 +26,7 @@ mix.styles([
 mix.scripts([
     'public/assets/datatables/jquery.min.js',
     'public/assets/vendors/js/vendor.bundle.base.js',
-    // 'public/assets/vendors/chart.js/Chart.min.js',
+    'public/assets/vendors/chart.js/Chart.min.js',
     'public/assets/js/off-canvas.js',
     'public/assets/js/hoverable-collapse.js',
     'public/assets/js/misc.js',

@@ -23,12 +23,11 @@ class ProfileController extends Controller
         $profile = $this->service->getById(Auth::user()->id);
         if(!$profile){ return abort(404); }
 
-        $mTrans = date('m', strtotime($profile->transaction[0]->created_at));
-        $now = date('m');
+        $now = date('m-Y');
 
         $countTrans = 0;
         foreach($profile->transaction as $item){
-            $mTrans = date('m', strtotime($item->created_at));
+            $mTrans = date('m-Y', strtotime($item->created_at));
             if($mTrans == $now){
                 $countTrans++;
             }
