@@ -41,6 +41,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 Route::middleware(['auth', 'karyawan', 'verified'])->prefix('karyawan')->name('karyawan.')->group(function (){
     Route::get('/home', 'KaryawanController@index')->name('dashboard');
     Route::resource('expanses', 'karyawan\ExpanseController');
+    Route::resource('profile', 'karyawan\ProfileController');
+    Route::put('profile/{id}/karyawan/update', 'karyawan\ProfileController@updateKaryawan')->name('profile.dataKaryawan.update');
 
     Route::get('expanses/get/your_expanses', 'karyawan\ExpanseController@indexOwner')->name('expanses.indexOwner');
     

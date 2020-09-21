@@ -97,14 +97,17 @@
                 <div class="form-group">
                     <label for="name" class="col-form-label">Nama:</label>
                     <input type="text" id="edit_name" class="form-control" name="name" value="{{ $profile->name}}">
+                    <small class="text-danger">{{ $errors->first('name') }}</small>
                 </div>
                 <div class="form-group">
                     <label for="name" class="col-form-label">Email:</label>
                     <input type="email" id="edit_email" class="form-control" name="email" value="{{ $profile->email}}">
+                    <small class="text-danger">{{ $errors->first('email') }}</small>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-form-label">Password: <small class="text-danger">*Kosongkan jika tidak ingin diganti</small></label>
                     <input type="password" id="edit_password" class="form-control" name="password">
+                    <small class="text-danger">{{ $errors->first('password') }}</small>
                 </div>
                 <div class="form-group">
                     <label for="password_confirmation" class="col-form-label">Password Confirmation:</label>

@@ -85,7 +85,7 @@ class TransactionDetailApiController extends Controller
     public function destroyByIdTrans($id_transaction){
         $object = $this->service->getBy('id_transaction', $id_transaction);
 
-        // JADIKAN ARRAY UNTUK AMBIL ID TRANSACTION DETAILNYA
+        // JADIKAN ARRAY UNTUK AMBIL SEMUA ID TRANSACTION DETAILNYA
         $arrayObj = [];
         foreach($object as $obj){
             $arrayObj[] = $obj->id;
