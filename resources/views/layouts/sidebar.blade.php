@@ -88,10 +88,17 @@
       @elseif(Auth::user()->isKaryawan())
 
       <li class="nav-item">
-        <a class="nav-link" href="pages/icons/mdi.html">
+        <a class="nav-link" data-toggle="collapse" href="#ui-expanses" aria-expanded="false" aria-controls="ui-expanses">
           <span class="menu-title">Expanses</span>
-          <i class="mdi mdi-contacts menu-icon"></i>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-cart-outline menu-icon"></i>
         </a>
+        <div class="collapse" id="ui-expanses">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('karyawan.expanses.indexOwner') }} ">Your Expanses</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('karyawan.expanses.index')}} ">All Expanses</a></li>
+          </ul>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="pages/forms/basic_elements.html">

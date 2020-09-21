@@ -23,6 +23,9 @@ Route::middleware(['auth:api', 'admin'])->prefix('admin')->name('admin.')->group
     // SEARCH SELECT2
     Route::get('services/search/select', 'API\ServiceApiController@loadDataSearchReq');
     Route::get('customers/search/select', 'API\CustomerApiController@loadDataSearchReq');
-    
+});
+
+Route::middleware(['auth:api', 'karyawan'])->prefix('karyawan')->name('karyawan.')->group(function () {
+    Route::resource('expanses', 'API\karyawan\ExpanseApiController');
 });
 
