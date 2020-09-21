@@ -27,5 +27,6 @@ Route::middleware(['auth:api', 'admin'])->prefix('admin')->name('admin.')->group
 
 Route::middleware(['auth:api', 'karyawan'])->prefix('karyawan')->name('karyawan.')->group(function () {
     Route::resource('expanses', 'API\karyawan\ExpanseApiController');
+    Route::resource('customers', 'API\karyawan\CustomerApiController');
 });
 
