@@ -6,7 +6,7 @@
             processing: true,
             serverSide: true,
             responsive: true,
-            ajax: "{{ route('admin.transactions.index') }}",
+            ajax: "{{ route('karyawan.transactions.index') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'code', name: 'code'},
@@ -20,9 +20,9 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false,
                 render: function( data, _type, _full ) {
                             let btn;
-                            btn = '<a href="{{ route("admin.transactions.index") }}/'+ data.id +'/edit" class="viewBtn btn btn-gradient-primary btn-sm mr-1" title="view"><i class="mdi mdi-eye menu-icon"></i></a>';
+                            btn = '<a href="{{ route("karyawan.transactions.index") }}/'+ data.id +'/edit" class="viewBtn btn btn-gradient-primary btn-sm mr-1" title="view"><i class="mdi mdi-eye menu-icon"></i></a>';
                             if(data.end_date == null){
-                                btn += '<button data-id="/api/admin/transactions/' + data.id + '" data-id_item="/api/admin/transaction-details/delete-by-idtrans/' + data.id + '" class="deleteBtn btn btn-gradient-danger btn-sm"><i class="mdi mdi-delete menu-icon"></i> Delete</button>';
+                                btn += '<button data-id="/api/karyawan/transactions/' + data.id + '" data-id_item="/api/karyawan/transaction-details/delete-by-idtrans/' + data.id + '" class="deleteBtn btn btn-gradient-danger btn-sm"><i class="mdi mdi-delete menu-icon"></i> Delete</button>';
                             }
                             return btn;
                 }},
@@ -92,7 +92,6 @@
                             }else{
                                 alert(data.responseJSON.message);
                             }
-                            
                         }
                     });
                 }

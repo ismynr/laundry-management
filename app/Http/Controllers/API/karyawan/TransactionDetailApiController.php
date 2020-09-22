@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\karyawan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -84,7 +84,7 @@ class TransactionDetailApiController extends Controller
 
     public function destroyByIdTrans($id_transaction){
         $object = $this->service->getBy('id_transaction', $id_transaction);
-        
+
         if(count($object) >= 1){
             // JADIKAN ARRAY UNTUK AMBIL SEMUA ID TRANSACTION DETAILNYA
             $arrayObj = [];

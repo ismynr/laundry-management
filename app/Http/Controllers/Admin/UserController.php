@@ -46,7 +46,7 @@ class UserController extends Controller
                     ->addIndexColumn()
                     ->editColumn('action', function($data) {
                         $d['id_user'] = $data->id;
-                        $d['id_karyawan'] = $data->karyawan->id;
+                        $d['id_karyawan'] = $data->karyawan->id ?? '';
                         return $d;
                     })
                     ->make(true);

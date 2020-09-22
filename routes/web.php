@@ -43,8 +43,16 @@ Route::middleware(['auth', 'karyawan', 'verified'])->prefix('karyawan')->name('k
     Route::resource('expanses', 'karyawan\ExpanseController');
     Route::resource('customers', 'karyawan\CustomerController');
     Route::resource('profile', 'karyawan\ProfileController');
-    Route::put('profile/{id}/karyawan/update', 'karyawan\ProfileController@updateKaryawan')->name('profile.dataKaryawan.update');
+    Route::resource('transactions', 'karyawan\TransactionController');
+    Route::resource('transaction-details', 'karyawan\TransactionDetailController');
+    Route::get('packages', 'karyawan\PackageController@index')->name('packages.index');
 
+    Route::get('transactions/{id}/claim', 'karyawan\TransactionController@claimTransaction')->name('transactions.claimTransaction');
+    Route::get('transaction/{id}/invoice', 'karyawan\TransactionController@generateInvoice')->name('transactions.invoice');
+    Route::post('transaction/{id}/invoice/mark', 'karyawan\TransactionController@generateMark')->name('transactions.invoice.mark');
+    Route::get('transaction-details/get/mark', 'karyawan\TransactionDetailController@indexMark')->name('transaction-details.indexMark');
+
+    Route::put('profile/{id}/karyawan/update', 'karyawan\ProfileController@updateKaryawan')->name('profile.dataKaryawan.update');
     Route::get('expanses/get/your_expanses', 'karyawan\ExpanseController@indexOwner')->name('expanses.indexOwner');
     
 });
