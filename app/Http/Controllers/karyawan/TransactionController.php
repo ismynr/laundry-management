@@ -107,6 +107,12 @@ class TransactionController extends Controller
             return abort(404); 
         }
 
+        if(count($check->transactionDetail) < 1 ){
+            return redirect()
+                    ->route('karyawan.transactions.edit', $id)
+                    ->with('error', 'Transaksi tidak dapat diselesaikan, Item tidak ada!');
+        }
+
         foreach($check->transactionDetail as $item){
             echo $item->status;
             if($item->status != "diambil"){
@@ -132,6 +138,12 @@ class TransactionController extends Controller
         $now =  new DateTime();
         if(!$invoice){ return abort(404); }
 
+        if(count($invoice->transactionDetail) < 1 ){
+            return redirect()
+                    ->route('karyawan.transactions.edit', $id)
+                    ->with('error', 'Tidak dapat dicetak, Item tidak ada!');
+        }
+
         $pdf = PDF::loadView('karyawan.transaction_management.invoice.print', compact('invoice', 'now'))
                         ->setPaper('a5', 'potrait');
         return $pdf->stream();
@@ -141,6 +153,12 @@ class TransactionController extends Controller
     {
         $invoice = $this->service->getById($id);
         if(!$invoice){ return abort(404); }
+
+        if(count($invoice->transactionDetail) < 1 ){
+            return redirect()
+                    ->route('karyawan.transactions.edit', $id)
+                    ->with('error', 'Tidak dapat dicetak, Item tidak ada!');
+        }
 
         $arrPrintMark = $request->all();
         unset($arrPrintMark["_token"]);
