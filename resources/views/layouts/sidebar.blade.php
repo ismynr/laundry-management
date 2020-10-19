@@ -109,7 +109,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('karyawan.transactions.index') }}">
           <span class="menu-title">Transaction</span>
-          <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+          <i class="mdi mdi-coin menu-icon"></i>
         </a>
       </li>
       <li class="nav-item sidebar-actions">

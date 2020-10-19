@@ -11,8 +11,7 @@
             <div class="brand-logo">
               <img src="../../assets/images/logo.svg">
             </div>
-            <h4>Hello! let's get started</h4>
-            <h6 class="font-weight-light">Sign in to continue.</h6>
+            <h4 class="font-weight-light">Silahkan Login</h4>
             <form class="pt-3" method="POST" action="{{ route('login') }}">
               @csrf
               <div class="form-group">
