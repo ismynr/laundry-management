@@ -36,8 +36,11 @@ class AdminController extends Controller
     public function CTMonth(){
         $transaction = $this->service->getAll();
 
-        $now = date('m-Y');
+        if($transaction == null){
+            return 0;
+        }
 
+        $now = date('m-Y');
         $countTransMonth = 0;
         foreach($transaction as $item){
             $mTrans = date('m-Y', strtotime($item->created_at));
@@ -53,8 +56,11 @@ class AdminController extends Controller
     public function STMonth(){
         $transaction = $this->service->getAll();
 
-        $now = date('m-Y');
+        if($transaction == null){
+            return 0;
+        }
 
+        $now = date('m-Y');
         $sumTransMonth = 0;
         $hi = [];
         foreach($transaction as $item){
@@ -72,8 +78,11 @@ class AdminController extends Controller
     public function SEMonth(){
         $expanses = $this->serviceExp->getAll();
 
-        $now = date('m-Y');
+        if($expanses == null){
+            return 0;
+        }
 
+        $now = date('m-Y');
         $sumExpMonth = 0;
         foreach($expanses as $item){
             $mExp = date('m-Y', strtotime($item->created_at));
@@ -136,6 +145,11 @@ class AdminController extends Controller
     public function transPriceByMonth($arrayMonth, $year){ //Array
         $arr = [];
         $transaction = $this->service->getAll();
+        
+        if($transaction == null){
+            return [];
+        }
+
         foreach($transaction as $item){
             foreach ($item->transactionDetail as $itemDetail) {
                 $mTrans = date('n', strtotime($itemDetail->created_at));
@@ -158,6 +172,11 @@ class AdminController extends Controller
     public function expPriceByMonth($arrayMonth, $year){ //Array
         $arr = [];
         $expanses = $this->serviceExp->getAll();
+
+        if($expanses == null){
+            return [];
+        }
+
         foreach($expanses as $item){
             $mTrans = date('n', strtotime($item->created_at));
             $yTrans = date('Y', strtotime($item->created_at));
@@ -175,10 +194,8 @@ class AdminController extends Controller
 
     public function arrJoinSumPrevCurr($arr1, $arr2){
         // JOIN AND SUM PRICE BY MONTH
-        $default = [
-            1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 
-            7 => 0, 8 => 0, 9 => 0, 10 => 0, 11 => 0, 12 => 0,
-        ];
+        $default = array_fill_keys(range(1,12), 0);
+
         // $defConvert = $default;
         $arrJoin = array_merge($arr1, $arr2);
         foreach ($arrJoin as $value) {
