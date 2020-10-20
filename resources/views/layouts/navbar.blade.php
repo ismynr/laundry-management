@@ -13,10 +13,6 @@
       <ul class="navbar-nav navbar-nav-right">
         <li class="nav-item nav-profile dropdown">
           <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-            <div class="nav-profile-img">
-              <img src="{{ asset('assets/images/faces/face1.jpg') }} " alt="image">
-              <span class="availability-status online"></span>
-            </div>
             <div class="nav-profile-text">
               <p class="mb-1 text-black">{{ Auth::user()->name }}</p>
             </div>
@@ -25,10 +21,12 @@
             <a class="dropdown-item" href="{{ route(Request::segment(1).'.profile.index') }}">
               <i class="mdi mdi-face-profile mr-2 text-black"></i> {{ __('Profile') }} 
             </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <i class="mdi mdi-cached mr-2 text-success"></i> {{ __('Activity Log') }} 
+            @if(Auth::user()->isAdmin())
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">
+                <i class="mdi mdi-cached mr-2 text-success"></i> {{ __('Activity Log') }} 
             </a>
+            @endif
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="mdi mdi-logout mr-2 text-primary"></i> {{ __('Logout') }} 

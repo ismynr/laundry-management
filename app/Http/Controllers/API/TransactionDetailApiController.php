@@ -9,6 +9,7 @@ use App\Http\Requests\TransactionDetailRequest;
 use App\Services\TransactionDetailService;
 use App\Traits\ResponseAPI;
 use App\TransactionDetail;
+use Auth;
 
 class TransactionDetailApiController extends Controller
 {
@@ -18,7 +19,7 @@ class TransactionDetailApiController extends Controller
 
     public function __construct(TransactionDetailService $service)
 	{
-		$this->service = $service;
+        $this->service = $service;
     }
 
     public function index()
@@ -66,6 +67,11 @@ class TransactionDetailApiController extends Controller
         ];
 
         $object = $this->service->update($data, $id);
+        activity("transaction item")
+            ->withProperties(["attributes" => $data,"old" => ['status' => $check->status]])
+            ->performedOn($check)
+            ->log(':causer.name has changed status of the transaction item to "'.$request->status.'"');
+            
         return $this->response(
             "Transaction Detail Updated", $check, 200
         );

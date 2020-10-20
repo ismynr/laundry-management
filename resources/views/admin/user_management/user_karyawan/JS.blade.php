@@ -16,7 +16,11 @@
                             let btn;
                             btn = '<button type="button" data-id="/api/admin/users/' + data.id_user + '" class="viewBtn btn btn-gradient-success btn-sm mr-1" title="view"><i class="mdi mdi-eye menu-icon"></i></button>';
                             btn += '<button type="button" data-id="/api/admin/users/' + data.id_user + '" class="editBtn btn btn-gradient-info btn-sm mr-1"><i class="mdi mdi-pencil menu-icon"></i> Edit</button>';
-                            btn += '<button data-id="/api/admin/users/' + data.id_user + '" data-id_kary="/api/admin/karyawans/' + data.id_karyawan + '" class="deleteBtn btn btn-gradient-danger btn-sm"><i class="mdi mdi-delete menu-icon"></i> Delete</button>';
+                            if(data.id_karyawan == ""){
+                                btn += '<button data-id="/api/admin/users/' + data.id_user + '" data-id_kary="" class="deleteBtn btn btn-gradient-danger btn-sm"><i class="mdi mdi-delete menu-icon"></i> Delete</button>';
+                            }else{
+                                btn += '<button data-id="/api/admin/users/' + data.id_user + '" data-id_kary="/api/admin/karyawans/' + data.id_karyawan + '" class="deleteBtn btn btn-gradient-danger btn-sm"><i class="mdi mdi-delete menu-icon"></i> Delete</button>';
+                            }
                             return btn;
                 }},
             ]
@@ -319,11 +323,11 @@
                 cancelButtonColor: '#b1a9a9',
                 confirmButtonText: 'Yes, delete it!'
             })
-            .then((result) => {
-                if (result.value) {
-                    // FIRST DELETE KARYAWAN ROW 
+            .then((result) => { 
+                if(urlKary == ""){
+                    // ONLY DELETE USER ROW 
                     $.ajax({
-                        url : urlKary,
+                        url : urlUser,
                         type: 'DELETE',
                         dataType : 'json',
                         data : { 
@@ -331,28 +335,48 @@
                             submit : true
                         },
                         success: function(data){
-                            // AND SECOND DELETE USER ROW 
-                            $.ajax({
-                                url : urlUser,
-                                type: 'DELETE',
-                                dataType : 'json',
-                                data : { 
-                                    method : '_DELETE', 
-                                    submit : true
-                                },
-                                success: function(data){
-                                    Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
-                                    table.draw();
-                                },
-                                error: function (data){
-                                    alert(data.responseJSON.message);
-                                }
-                            });
+                            Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+                            table.draw();
                         },
                         error: function (data){
                             alert(data.responseJSON.message);
                         }
                     });
+                }else{
+                    if (result.value) {
+                        // FIRST DELETE KARYAWAN ROW 
+                        $.ajax({
+                            url : urlKary,
+                            type: 'DELETE',
+                            dataType : 'json',
+                            data : { 
+                                method : '_DELETE', 
+                                submit : true
+                            },
+                            success: function(data){
+                                // AND SECOND DELETE USER ROW 
+                                $.ajax({
+                                    url : urlUser,
+                                    type: 'DELETE',
+                                    dataType : 'json',
+                                    data : { 
+                                        method : '_DELETE', 
+                                        submit : true
+                                    },
+                                    success: function(data){
+                                        Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+                                        table.draw();
+                                    },
+                                    error: function (data){
+                                        alert(data.responseJSON.message);
+                                    }
+                                });
+                            },
+                            error: function (data){
+                                alert(data.responseJSON.message);
+                            }
+                        });
+                    }
                 }
             })
         });

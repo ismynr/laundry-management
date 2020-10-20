@@ -104,7 +104,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                {{-- <img src="https://www.sparksuite.com/images/logo.png" style="width:100%; max-width:130px;"> --}}
+                                <img src="{{ public_path('assets/images/logo.jpg') }}" style="width:100%; max-width:130px;">
                             </td>
                             <td>
                                 Invoice #{{ $invoice->code }}<br>

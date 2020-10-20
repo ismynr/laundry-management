@@ -156,6 +156,9 @@
                 success: function (data) {
                     showHideComp('hide', '', Vdef.column.storeItem);
                     Vdef.form.storeItem.trigger("reset");
+                    $("#id_package").val("");
+                    $("#harga_package").val("");
+                    $("#harga").val("");
                     Toast.fire({icon: 'success', title: 'Data Added Successfully'});
                 },
                 error: function (data) {

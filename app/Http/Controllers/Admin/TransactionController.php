@@ -127,9 +127,13 @@ class TransactionController extends Controller
         ];
 
         $object = $this->service->update($data, $id);
+        activity("transaction")
+            ->withProperties(["attributes" => $check])  
+            ->performedOn($check)
+            ->log(':causer.name has claimed this transaction with code :subject.code');
         return redirect()
-                    ->route('admin.transactions.edit', $id)
-                    ->with('success', 'Transaksi telah selesai, Anda dapat mencetak struk kuitansi transaksi!');
+            ->route('admin.transactions.edit', $id)
+            ->with('success', 'Transaksi telah selesai, Anda dapat mencetak struk kuitansi transaksi!');
     }
 
     public function generateInvoice($id)

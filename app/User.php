@@ -7,9 +7,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\Contracts\Activity;
+
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, LogsActivity;
+
+    protected $table = "users";
 
     /**
      * The attributes that are mass assignable.
@@ -37,6 +42,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // LOG ACTIVITY SPATIE
+    protected static $logName = 'users';
+    protected static $logAttributes = ['name', 'email', 'password'];
+    protected static $recordEvents = ['created', 'updated', 'deleted'];
+    protected static $logOnlyDirty = true;
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return ":causer.name has {$eventName} user model";
+    }
 
     public function setPasswordAttribute($password)
     {   

@@ -64,12 +64,20 @@ class ProfileController extends Controller
 
         $user['name'] = $request->name;
         $user['email'] = $request->email;
-
         if($request->password != null){
             $user['password'] = $request->password;
         }
 
+        activity()->disableLogging();
         $object = $this->service->update($user, $id);
+
+        activity()->enableLogging();
+        activity("profile")
+            ->withProperties([
+                "attributes" => ['name' => $user->name, 'email' => $user->email],
+                "old" => ['name' => $check->name, 'email' => $check->email]
+            ])
+            ->log(':causer.name changed the profile');
         return redirect()->route('admin.profile.index')->with('success', 'Profile berhasil diubah!');
     }
 
