@@ -22,8 +22,8 @@
               <i class="mdi mdi-face-profile mr-2 text-black"></i> {{ __('Profile') }} 
             </a>
             @if(Auth::user()->isAdmin())
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{ route('admin.activity-log.index') }}">
                 <i class="mdi mdi-cached mr-2 text-success"></i> {{ __('Activity Log') }} 
             </a>
             @endif

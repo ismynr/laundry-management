@@ -71,6 +71,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Transaction', 'id_user');
     }
 
+    public function activityLog(){
+        return $this->hasMany('App\ActivityLog', 'causer_id');
+    }
+
     public function isAdmin(){
         return $this->role == 'admin';
     }

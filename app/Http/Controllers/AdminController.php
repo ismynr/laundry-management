@@ -6,17 +6,21 @@ use Illuminate\Http\Request;
 
 use App\Services\TransactionService;
 use App\Services\ExpanseService;
+use App\Services\ActivityLogService;
 use Auth;
 
 class AdminController extends Controller
 {
     protected $service;
     protected $serviceExp;
+    protected $serviceActivity;
 
-	public function __construct(TransactionService $service, ExpanseService $serviceExp)
+    public function __construct(TransactionService $service, ExpanseService $serviceExp,
+                                ActivityLogService $serviceActivity)
 	{
         $this->service = $service;
         $this->serviceExp = $serviceExp;
+        $this->serviceActivity = $serviceActivity;
     }
 
     // DASHBOARD CONTROLLER
@@ -27,9 +31,10 @@ class AdminController extends Controller
         $SEMonth = $this->SEMonth();
         $ChartAllMonth = json_encode($this->ChartAllMonth());
         $RecentTrans = $this->RecentTrans();
+        $RecentActivity = $this->RecentActivity();
 
         return view('admin.admin', compact('CTMonth', 'STMonth', 'SEMonth', 'ChartAllMonth', 
-                                        'RecentTrans'));
+                                        'RecentTrans', 'RecentActivity'));
     }
 
     // COUNT TRANSACTIONS EVERY MONTH
@@ -136,6 +141,11 @@ class AdminController extends Controller
     public function RecentTrans(){
         $transaction = $this->service->getAllLatestLimit(7);
         return $transaction;
+    }
+
+    public function RecentActivity(){
+        $activity = $this->serviceActivity->getAllLatestLimit(7);
+        return $activity;
     }
 
     /**

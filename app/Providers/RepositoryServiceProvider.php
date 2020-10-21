@@ -20,6 +20,8 @@ use App\Repositories\TransactionRepository;
 use App\Interfaces\TransactionRepositoryInterface;
 use App\Repositories\TransactionDetailRepository;
 use App\Interfaces\TransactionDetailRepositoryInterface;
+use App\Repositories\ActivityLogRepository;
+use App\Interfaces\ActivityLogRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -68,6 +70,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             TransactionDetailRepositoryInterface::class, 
             TransactionDetailRepository::class
+        );
+
+        $this->app->bind(
+            ActivityLogRepositoryInterface::class, 
+            ActivityLogRepository::class
         );
     }
 

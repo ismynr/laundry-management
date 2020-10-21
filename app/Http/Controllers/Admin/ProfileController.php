@@ -74,7 +74,7 @@ class ProfileController extends Controller
         activity()->enableLogging();
         activity("profile")
             ->withProperties([
-                "attributes" => ['name' => $user->name, 'email' => $user->email],
+                "attributes" => ['name' => $request->name, 'email' => $request->email],
                 "old" => ['name' => $check->name, 'email' => $check->email]
             ])
             ->log(':causer.name changed the profile');

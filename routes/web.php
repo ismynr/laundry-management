@@ -24,6 +24,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('transactions', 'admin\TransactionController');
     Route::resource('transaction-details', 'admin\TransactionDetailController');
     Route::resource('profile', 'admin\ProfileController');
+    Route::resource('activity-log', 'admin\ActivityLogController');
 
     Route::get('transactions/{id}/claim', 'admin\TransactionController@claimTransaction')->name('transactions.claimTransaction');
     Route::get('transaction/{id}/invoice', 'admin\TransactionController@generateInvoice')->name('transactions.invoice');

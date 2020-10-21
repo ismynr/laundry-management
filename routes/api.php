@@ -12,6 +12,7 @@ Route::middleware(['auth:api', 'admin'])->prefix('admin')->name('api.admin.')->g
     Route::resource('karyawans', 'API\KaryawanApiController');
     Route::resource('transactions', 'API\TransactionApiController');
     Route::resource('transaction-details', 'API\TransactionDetailApiController');
+    Route::resource('activity-log', 'API\ActivityLogApiController');
     
     Route::put('transaction-details/update-status/{id}', 'API\TransactionDetailApiController@updateStatus');
     Route::delete('transaction-details/delete-by-idtrans/{id}', 'API\TransactionDetailApiController@destroyByIdTrans');

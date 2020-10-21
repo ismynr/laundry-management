@@ -7,7 +7,7 @@
     <h3 class="page-title">
       <span class="page-title-icon bg-gradient-primary text-white mr-2">
         <i class="mdi mdi-home"></i>
-      </span> Dashboard </h3>
+      </span> Dashboard</h3>
     <nav aria-label="breadcrumb">
       <ul class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">
@@ -70,11 +70,11 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th> Code </th>
-                  <th> Customer </th>
-                  <th> Jml Transaksi  </th>
-                  <th> Tracking </th>
-                  <th> Dibuat pada </th>
+                  <th class="font-weight-bold"> Code </th>
+                  <th class="font-weight-bold"> Customer </th>
+                  <th class="font-weight-bold"> Jml Transaksi  </th>
+                  <th class="font-weight-bold"> Tracking </th>
+                  <th class="font-weight-bold"> Dibuat pada </th>
                 </tr>
               </thead>
               <tbody>
@@ -107,6 +107,38 @@
                       <label class="badge btn-inverse-dark" title="diambil">{{ $diambil }} </label>
                     </td>
                     <td> {{ FormatHelp::hari($item->created_at) }} </td>
+                  </tr>
+                @empty
+                    <tr>
+                      <td colspan="5">Tidak ada data</td>
+                    </tr>
+                @endforelse
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Recent Activity</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="font-weight-bold"> Action </th>
+                  <th class="font-weight-bold"> Time </th>
+                </tr>
+              </thead>
+              <tbody>
+                @forelse ($RecentActivity as $item)
+                  <tr>
+                    <td> {{ $item->description }} </td>
+                    <td> {{ FormatHelp::timeAgo($item->created_at) }} </td>
                   </tr>
                 @empty
                     <tr>
