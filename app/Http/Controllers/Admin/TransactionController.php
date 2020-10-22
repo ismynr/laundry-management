@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\TransactionRequest;
 use App\Services\TransactionService;
+use App\Services\CustomerService;
 use DataTables;
 use DateTime;
 use PDF;
@@ -14,10 +15,12 @@ use PDF;
 class TransactionController extends Controller
 {
     protected $service;
+    protected $serviceCustomer;
 
-	public function __construct(TransactionService $service)
+	public function __construct(TransactionService $service, CustomerService $serviceCustomer)
 	{
         $this->service = $service;
+        $this->serviceCustomer = $serviceCustomer;
     }
     
     public function index(Request $request)
@@ -61,6 +64,9 @@ class TransactionController extends Controller
             'start_date' => new DateTime(),
             'end_date' => null,
         ];  
+
+        // update point in customer
+
         $request->request->add($tr);
         $inTransaction = $this->service->insert($request->all());
 

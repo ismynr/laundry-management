@@ -13,12 +13,12 @@ class Customer extends Model
     protected $table = 'customers';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'name', 'alamat', 'telephone', 'gender', 'point'
+        'name', 'alamat', 'telephone', 'gender'
     ];
 
     // LOG ACTIVITY SPATIE
     protected static $logName = 'customers';
-    protected static $logAttributes = ['name', 'alamat', 'telephone', 'gender', 'point'];
+    protected static $logAttributes = ['name', 'alamat', 'telephone', 'gender'];
     protected static $recordEvents = ['created', 'updated', 'deleted'];
     protected static $logOnlyDirty = true;
 

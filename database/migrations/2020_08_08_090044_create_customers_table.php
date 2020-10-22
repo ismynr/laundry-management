@@ -19,7 +19,6 @@ class CreateCustomersTable extends Migration
             $table->text('alamat');
             $table->string('telephone', 15);
             $table->string('gender', 10);
-            $table->integer('point');
             $table->timestamps();
         });
     }

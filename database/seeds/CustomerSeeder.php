@@ -19,7 +19,6 @@ class CustomerSeeder extends Seeder
             $customer->alamat    = $faker->address;
             $customer->telephone = $faker->numerify('08##########');
             $customer->gender    = $faker->randomElement(['laki-laki','perempuan']);
-            $customer->point     = 0;
             $customer->save();
         }
     }

@@ -32,7 +32,6 @@
                 <th> Alamat </th>
                 <th> Telephone </th>
                 <th> Gender </th>
-                <th width="10%"> Point </th>
                 <th width="20%"> Action </th>
               </tr>
             </thead>

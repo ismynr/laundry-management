@@ -13,7 +13,6 @@
                 {data: 'alamat', name: 'alamat'},
                 {data: 'telephone', name: 'telephone'},
                 {data: 'gender', name: 'gender'},
-                {data: 'point', name: 'point'},
                 {data: 'action', name: 'action', orderable: false, searchable: false,
                 render: function( data, _type, _full ) {
                             let btn;

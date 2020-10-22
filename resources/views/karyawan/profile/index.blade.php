@@ -53,7 +53,7 @@
             <div class="container">
                 <div class="row login_box">
                     <div class="col-md-12 col-xs-12" align="center">
-                        <div class="outter mb-2"><img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="image-circle"/></div>   
+                        <div class="outter mb-2"><img src="{{ asset('assets/images/faces-clipart/pic-1.jpg') }}" class="image-circle"/></div>   
                         <h3><b>{{  $profile->name }}</b></h3>
                         <h5 class="text-uppercase">{{ $profile->role }} </h5>
                         <h5>{{ FormatHelp::hari_tanggal($profile->created_at) }} </h5>
